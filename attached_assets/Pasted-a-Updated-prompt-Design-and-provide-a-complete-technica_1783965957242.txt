@@ -1,0 +1,92 @@
+a) Updated prompt
+
+Design and provide a complete technical roadmap for building a modern multi-vendor eCommerce mobile application similar to Amazon and Flipkart, with a more advanced UI/UX experience using React Native, Hybrid Architecture, Kotlin, and Framer Motion-style animations/interactions. The app should support multiple product categories such as electronics, clothing, groceries, food items, household goods, and more.
+
+The solution should include:
+- admin panel
+- Product listing and inventory management for sellers
+- Authentication, authorization, and account verification systems
+- Secure payment gateway integration
+- Order management, delivery tracking, refunds, and returns
+- Wishlist, cart, reviews, ratings, offers, coupons, and recommendations
+- Advanced search and filtering similar to Amazon/Flipkart
+- AI-powered recommendations and personalized feeds
+- Real-time notifications and chat support
+- Scalable backend architecture for millions of users
+- High-level security practices for user data, payments, APIs, and authentication
+- Modern animated UI/UX inspired by premium eCommerce platforms
+- Cloud deployment, CI/CD, analytics, logging, and monitoring
+- Database design, API structure, microservices (if needed), and tech stack recommendations
+- Hybrid architecture using React Native with Kotlin-native modules where performance is required
+- Suggested folder structure, development phases, and estimated timeline
+- Complete development roadmap from MVP to production launch
+- Recommendations for scalable technologies, third-party services, and infrastructure
+
+Also include:
+- Recommended backend framework and database
+- Authentication methods (JWT, OAuth, MFA, etc.)
+- Payment providers
+- Cloud hosting options
+- Security and compliance considerations
+- Suggested UI libraries and animation frameworks
+- Sample system architecture diagrams and API examples
+- Cost estimation for development and infrastructure
+
+b) Inquiries
+
+1. Do you want this app for:
+   - India only
+   - Global market
+   - Both
+
+2. Should the platform support:
+   - Android only
+   - iOS only
+   - Both Android and iOS
+
+3. What backend preference do you have?
+   - Node.js
+   - Spring Boot
+   - Django
+   - Firebase
+   - No preference
+
+4. Do you want:
+   - Monolithic architecture
+   - Microservices architecture
+   - Unsure / recommend best option
+
+5. Which payment gateways should be supported?
+   - Razorpay
+   - Stripe
+   - PayPal
+   - UPI
+   - COD
+   - Others
+
+6. Should the app include:
+   - AI chatbot support
+   - Voice search
+   - Multi-language support
+   - Live streaming shopping
+   - AR/VR product preview
+
+7. What is your approximate budget level?
+   - Low-budget MVP
+   - Mid-scale startup
+   - Enterprise-grade platform
+
+8. Do you want a complete coding prompt for AI coding tools (like Cursor, Claude Code, ChatGPT, Lovable, Bolt, Replit AI), or only a detailed software architecture and planning document?
+
+9. Should the seller verification process include:
+   - GST verification
+   - PAN verification
+   - Aadhaar/KYC verification
+   - Business documents
+   - Manual admin approval
+
+10. Do you want the response focused on:
+   - Full production-ready architecture
+   - MVP first
+   - Step-by-step beginner-friendly guide
+   - Enterprise engineering approach
