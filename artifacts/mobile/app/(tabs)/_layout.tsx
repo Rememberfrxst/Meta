@@ -7,18 +7,8 @@ import { Tabs } from 'expo-router';
 import { Icon, Label, NativeTabs } from 'expo-router/unstable-native-tabs';
 import { useCart } from '@/context/CartContext';
 import { useTheme } from '@/context/ThemeContext';
-import {
-  HomeIconFilled,
-  HomeIconOutline,
-  SearchIconFilled,
-  SearchIconOutline,
-  CartIconFilled,
-  CartIconOutline,
-  OrdersIconFilled,
-  OrdersIconOutline,
-  ProfileIconFilled,
-  ProfileIconOutline,
-} from '@/components/TabIcons';
+import { Ionicons } from '@expo/vector-icons';
+import { HomeIconFilled, HomeIconOutline } from '@/components/TabIcons';
 
 // NativeTabs + SF Symbols are iOS-only — never render on Android/web
 // to avoid Japanese-character fallbacks from SF Symbol rendering.
@@ -101,10 +91,9 @@ function ClassicTabLayout() {
         name="search"
         options={{
           title: 'Search',
-          tabBarIcon: ({ color, focused }) =>
-            focused
-              ? <SearchIconFilled color={color} size={24} />
-              : <SearchIconOutline color={color} size={24} />,
+          tabBarIcon: ({ color, focused, size }) => (
+            <Ionicons name={focused ? 'search' : 'search-outline'} size={size ?? 23} color={color} />
+          ),
         }}
       />
 
@@ -118,10 +107,9 @@ function ClassicTabLayout() {
             fontFamily: 'Inter_700Bold',
             fontSize: 10,
           },
-          tabBarIcon: ({ color, focused }) =>
-            focused
-              ? <CartIconFilled color={color} size={24} />
-              : <CartIconOutline color={color} size={24} />,
+          tabBarIcon: ({ color, focused, size }) => (
+            <Ionicons name={focused ? 'bag' : 'bag-outline'} size={size ?? 23} color={color} />
+          ),
         }}
       />
 
@@ -129,10 +117,9 @@ function ClassicTabLayout() {
         name="orders"
         options={{
           title: 'Orders',
-          tabBarIcon: ({ color, focused }) =>
-            focused
-              ? <OrdersIconFilled color={color} size={24} />
-              : <OrdersIconOutline color={color} size={24} />,
+          tabBarIcon: ({ color, focused, size }) => (
+            <Ionicons name={focused ? 'receipt' : 'receipt-outline'} size={size ?? 23} color={color} />
+          ),
         }}
       />
 
@@ -140,10 +127,9 @@ function ClassicTabLayout() {
         name="profile"
         options={{
           title: 'Me',
-          tabBarIcon: ({ color, focused }) =>
-            focused
-              ? <ProfileIconFilled color={color} size={24} />
-              : <ProfileIconOutline color={color} size={24} />,
+          tabBarIcon: ({ color, focused, size }) => (
+            <Ionicons name={focused ? 'person-circle' : 'person-circle-outline'} size={size ?? 23} color={color} />
+          ),
         }}
       />
     </Tabs>

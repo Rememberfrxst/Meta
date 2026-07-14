@@ -11,6 +11,7 @@ import {
   Inter_700Bold,
   useFonts,
 } from '@expo-google-fonts/inter';
+import { Ionicons } from '@expo/vector-icons';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { ThemeProvider } from '@/context/ThemeContext';
@@ -57,6 +58,9 @@ export default function RootLayout() {
     Inter_500Medium,
     Inter_600SemiBold,
     Inter_700Bold,
+    // Explicitly preload Ionicons font so it never falls back to Japanese/Chinese
+    // glyphs on physical Android devices.
+    ...Ionicons.font,
   });
 
   useEffect(() => {
