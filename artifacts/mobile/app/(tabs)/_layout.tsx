@@ -1,5 +1,5 @@
-import React from 'react';
-import { Platform, StyleSheet, View } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { Animated, Platform, StyleSheet, View } from 'react-native';
 import { useColors } from '@/hooks/useColors';
 import { BlurView } from 'expo-blur';
 import { isLiquidGlassAvailable } from 'expo-glass-effect';
@@ -8,7 +8,38 @@ import { Icon, Label, NativeTabs } from 'expo-router/unstable-native-tabs';
 import { useCart } from '@/context/CartContext';
 import { useTheme } from '@/context/ThemeContext';
 import SvgIcon from '@/components/SvgIcon';
-import { HomeIconFilled, HomeIconOutline } from '@/components/TabIcons';
+import {
+  HomeIconFilled,
+  HomeIconOutline,
+  ProfileIconFilled,
+  ProfileIconOutline,
+  CartIconFilledFA,
+  CartIconOutline,
+  OrdersIconFilledFA,
+  OrdersIconOutlineFA,
+} from '@/components/TabIcons';
+
+/* Animated Me icon — scales up with a spring when focused */
+function AnimatedMeIcon({ focused, color, size }: { focused: boolean; color: string; size: number }) {
+  const scale = useRef(new Animated.Value(focused ? 1.12 : 1)).current;
+
+  useEffect(() => {
+    Animated.spring(scale, {
+      toValue: focused ? 1.15 : 1,
+      useNativeDriver: true,
+      friction: 5,
+      tension: 120,
+    }).start();
+  }, [focused, scale]);
+
+  return (
+    <Animated.View style={{ transform: [{ scale }] }}>
+      {focused
+        ? <ProfileIconFilled color={color} size={size} />
+        : <ProfileIconOutline color={color} size={size} />}
+    </Animated.View>
+  );
+}
 
 // NativeTabs + SF Symbols are iOS-only — never render on Android/web
 // to avoid Japanese-character fallbacks from SF Symbol rendering.
@@ -107,9 +138,10 @@ function ClassicTabLayout() {
             fontFamily: 'GoogleSans_700Bold',
             fontSize: 10,
           },
-          tabBarIcon: ({ color, focused, size }) => (
-            <SvgIcon name={focused ? 'bag' : 'bag-outline'} size={size ?? 23} color={color} />
-          ),
+          tabBarIcon: ({ color, focused, size }) =>
+            focused
+              ? <CartIconFilledFA color={color} size={size ?? 23} />
+              : <CartIconOutline color={color} size={size ?? 23} />,
         }}
       />
 
@@ -117,9 +149,10 @@ function ClassicTabLayout() {
         name="orders"
         options={{
           title: 'Orders',
-          tabBarIcon: ({ color, focused, size }) => (
-            <SvgIcon name={focused ? 'receipt' : 'receipt-outline'} size={size ?? 23} color={color} />
-          ),
+          tabBarIcon: ({ color, focused, size }) =>
+            focused
+              ? <OrdersIconFilledFA color={color} size={size ?? 23} />
+              : <OrdersIconOutlineFA color={color} size={size ?? 23} />,
         }}
       />
 
@@ -128,7 +161,7 @@ function ClassicTabLayout() {
         options={{
           title: 'Me',
           tabBarIcon: ({ color, focused, size }) => (
-            <SvgIcon name={focused ? 'person-circle' : 'person-circle-outline'} size={size ?? 23} color={color} />
+            <AnimatedMeIcon focused={focused} color={color} size={size ?? 23} />
           ),
         }}
       />

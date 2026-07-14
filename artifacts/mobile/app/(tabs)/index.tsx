@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
   locationRow: { flexDirection: 'row', alignItems: 'center', gap: 4, marginTop: 2 },
   location: { fontSize: 12, fontFamily: 'GoogleSans_500Medium', color: 'rgba(255,255,255,0.9)', maxWidth: 180 },
   headerActions: { flexDirection: 'row', gap: 4 },
-  iconBtn: { width: 38, height: 38, alignItems: 'center', justifyContent: 'center', borderRadius: 19, backgroundColor: 'rgba(255,255,255,0.15)' },
+  iconBtn: { width: 38, height: 38, alignItems: 'center', justifyContent: 'center', borderRadius: 19 },
   searchTouch: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingHorizontal: 14, paddingVertical: 10, borderRadius: 10 },
   searchHint: { flex: 1, fontSize: 14, fontFamily: 'GoogleSans_400Regular' },
   stripe: { paddingVertical: 8, paddingHorizontal: 16 },
