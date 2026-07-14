@@ -1,0 +1,1 @@
+- [ProductCard layout rules](product-card-rules.md) — title always reserves 2-line height; EXPRESS badge removed from cards; rating always starts at same position.

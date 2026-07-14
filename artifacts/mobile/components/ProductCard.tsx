@@ -41,19 +41,13 @@ export default function ProductCard({ product, onPress, isWishlisted = false, on
       onPress={onPress}
       activeOpacity={0.92}
     >
-      {/* Image area — only express badge here */}
+      {/* Image area — gradient only, no badges */}
       <LinearGradient
         colors={product.gradient as string[]}
         style={styles.image}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
-      >
-        {product.isExpress && (
-          <View style={[styles.expressBadge, { backgroundColor: colors.accent }]}>
-            <Text style={styles.expressText}>EXPRESS</Text>
-          </View>
-        )}
-      </LinearGradient>
+      />
 
       {/* Info section */}
       <View style={styles.info}>
@@ -114,14 +108,6 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     padding: 10,
   },
-  expressBadge: {
-    paddingHorizontal: 7,
-    paddingVertical: 3,
-    borderRadius: 5,
-    alignSelf: 'flex-start',
-  },
-  expressText: { fontSize: 8, fontFamily: 'GoogleSans_700Bold', color: '#fff', letterSpacing: 0.8 },
-
   info: { paddingHorizontal: 11, paddingTop: 9, paddingBottom: 11, gap: 5 },
 
   /* Discount badge — Amazon pill style */
@@ -134,7 +120,8 @@ const styles = StyleSheet.create({
   },
   discountText: { fontSize: 10, fontFamily: 'GoogleSans_700Bold', color: '#fff', letterSpacing: 0.2 },
 
-  name: { fontSize: 13, fontFamily: 'GoogleSans_500Medium', lineHeight: 18 },
+  /* Fixed 2-line height so rating always starts at the same vertical position */
+  name: { fontSize: 13, fontFamily: 'GoogleSans_500Medium', lineHeight: 18, minHeight: 36 },
   ratingRow: { flexDirection: 'row', alignItems: 'center', gap: 4 },
   reviewCount: { fontSize: 10, fontFamily: 'GoogleSans_400Regular' },
 
