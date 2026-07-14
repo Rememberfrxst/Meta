@@ -5,6 +5,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import Svg, { Path } from 'react-native-svg';
 import SvgIcon from '@/components/SvgIcon';
+import { CartIconNew } from '@/components/TabIcons';
 import * as Haptics from 'expo-haptics';
 import { useColors } from '@/hooks/useColors';
 import { useTheme } from '@/context/ThemeContext';
@@ -27,13 +28,13 @@ const HERO_SLIDES = [
   { start: { x: 0, y: 0.5 }, end: { x: 1, y: 0.5 }, icon: 'star-outline' as const },
 ];
 
-/* Custom back-chevron glyph (exact path supplied by the user) */
+/* FA v7 chevron-left */
 function BackChevronIcon({ size, color }: { size: number; color: string }) {
   return (
     <Svg width={size} height={size} viewBox="0 0 640 640">
       <Path
         fill={color}
-        d="M201.4 297.4C188.9 309.9 188.9 330.2 201.4 342.7L361.4 502.7C373.9 515.2 394.2 515.2 406.7 502.7C419.2 490.2 419.2 469.9 406.7 457.4L269.3 320L406.6 182.6C419.1 170.1 419.1 149.8 406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3L201.3 297.3z"
+        d="M169.4 297.4C156.9 309.9 156.9 330.2 169.4 342.7L361.4 534.7C373.9 547.2 394.2 547.2 406.7 534.7C419.2 522.2 419.2 501.9 406.7 489.4L237.3 320L406.6 150.6C419.1 138.1 419.1 117.8 406.6 105.3C394.1 92.8 373.8 92.8 361.3 105.3L169.3 297.3z"
       />
     </Svg>
   );
@@ -249,7 +250,7 @@ export default function ProductDetailScreen() {
                 <HeartIcon size={HERO_ICON_SIZE} color={isWishlisted ? '#FF4D6D' : heroBtnIcon} filled={isWishlisted} />
               </TouchableOpacity>
               <TouchableOpacity style={styles.heroBtn}>
-                <SvgIcon name="share-outline" size={HERO_ICON_SIZE} color={heroBtnIcon} />
+                <SvgIcon name="share-outline" size={20} color={heroBtnIcon} />
               </TouchableOpacity>
             </View>
           </View>
@@ -599,12 +600,7 @@ export default function ProductDetailScreen() {
             ]}
             onPress={handleAddToCart}
           >
-            <Svg width={20} height={20} viewBox="0 0 640 640">
-              <Path
-                fill={isDark ? '#000000' : colors.primary}
-                d="M208 32C208 14.3 222.3 0 240 0C257.7 0 272 14.3 272 32L272 64L368 64L368 32C368 14.3 382.3 0 400 0C417.7 0 432 14.3 432 32L432 64L496 64C522.5 64 544 85.5 544 112L544 176L560 176C577.7 176 592 190.3 592 208C592 225.7 577.7 240 560 240L544 240L544 528C544 572.2 508.2 608 464 608L176 608C131.8 608 96 572.2 96 528L96 112C96 85.5 117.5 64 144 64L208 64L208 32zM320 192C302.3 192 288 206.3 288 224L288 304L208 304C190.3 304 176 318.3 176 336C176 353.7 190.3 368 208 368L288 368L288 448C288 465.7 302.3 480 320 480C337.7 480 352 465.7 352 448L352 368L432 368C449.7 368 464 353.7 464 336C464 318.3 449.7 304 432 304L352 304L352 224C352 206.3 337.7 192 320 192z"
-              />
-            </Svg>
+            <CartIconNew color={isDark ? '#000000' : colors.primary} size={20} />
             <Text style={[styles.cartBtnText, { color: isDark ? '#000000' : colors.primary }]}>
               {inCart ? 'Add More' : 'Add to Bag'}
             </Text>

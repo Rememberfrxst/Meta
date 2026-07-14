@@ -114,7 +114,7 @@ export default function HomeScreen() {
           </View>
           <View style={styles.headerActions}>
             <TouchableOpacity style={styles.iconBtn} onPress={() => router.push('/wishlist')}>
-              <SvgIcon name="heart-outline" size={22} color="#fff" />
+              <SvgIcon name="heart-outline" size={20} color="#fff" />
             </TouchableOpacity>
             <TouchableOpacity style={styles.iconBtn}>
               <SvgIcon name="notifications-outline" size={22} color="#fff" />
