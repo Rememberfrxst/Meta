@@ -38,7 +38,7 @@ function RootLayoutNav() {
       }}
     >
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="product/[id]" options={{ title: '' }} />
+      <Stack.Screen name="product/[id]" options={{ headerShown: false }} />
       <Stack.Screen name="category/[slug]" options={{ title: '' }} />
       <Stack.Screen name="checkout/index" options={{ title: 'Checkout', headerBackTitle: 'Cart' }} />
       <Stack.Screen name="checkout/success" options={{ headerShown: false }} />

@@ -56,7 +56,7 @@ export default function ProductDetailScreen() {
     { key: 'Rating', value: `${product.rating} / 5 (${product.reviewCount.toLocaleString()} reviews)` },
     { key: 'Discount', value: `${product.discount}% off` },
     { key: 'Express Delivery', value: product.isExpress ? 'Available' : 'Standard Only' },
-    { key: 'In Stock', value: product.inStock ? 'Yes' : 'Out of Stock' },
+    { key: 'In Stock', value: product.stock > 0 ? 'Yes' : 'Out of Stock' },
   ];
 
   const handleAddToCart = () => {
@@ -87,17 +87,27 @@ export default function ProductDetailScreen() {
             end={{ x: 1, y: 1 }}
           />
 
-          {/* Floating action buttons top-right */}
-          <View style={styles.heroActions}>
+          {/* Back button — top-left, floating over image */}
+          <View style={[styles.heroTopBar, { top: insets.top + 8 }]} pointerEvents="box-none">
             <TouchableOpacity
               style={[styles.heroBtn, { backgroundColor: 'rgba(0,0,0,0.32)' }]}
-              onPress={() => { toggle(product); Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); }}
+              onPress={() => router.back()}
             >
-              <SvgIcon name={isWishlisted ? 'heart' : 'heart-outline'} size={21} color={isWishlisted ? '#FF4D6D' : '#fff'} />
+              <SvgIcon name="chevron-back" size={22} color="#fff" />
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.heroBtn, { backgroundColor: 'rgba(0,0,0,0.32)' }]}>
-              <SvgIcon name="share-outline" size={21} color="#fff" />
-            </TouchableOpacity>
+
+            {/* Floating action buttons top-right */}
+            <View style={styles.heroActions}>
+              <TouchableOpacity
+                style={[styles.heroBtn, { backgroundColor: 'rgba(0,0,0,0.32)' }]}
+                onPress={() => { toggle(product); Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); }}
+              >
+                <SvgIcon name={isWishlisted ? 'heart' : 'heart-outline'} size={21} color={isWishlisted ? '#FF4D6D' : '#fff'} />
+              </TouchableOpacity>
+              <TouchableOpacity style={[styles.heroBtn, { backgroundColor: 'rgba(0,0,0,0.32)' }]}>
+                <SvgIcon name="share-outline" size={21} color="#fff" />
+              </TouchableOpacity>
+            </View>
           </View>
 
           {/* Center product icon placeholder */}
@@ -190,7 +200,7 @@ export default function ProductDetailScreen() {
                 <Text style={[styles.infoBannerText, { color: colors.accent }]}>Express Delivery Available</Text>
               </View>
             )}
-            {!product.inStock && (
+            {!(product.stock > 0) && (
               <View style={[styles.infoBanner, { backgroundColor: colors.destructive + '14', borderColor: colors.destructive + '50' }]}>
                 <SvgIcon name="close-circle" size={15} color={colors.destructive} />
                 <Text style={[styles.infoBannerText, { color: colors.destructive }]}>Out of Stock</Text>
@@ -282,8 +292,8 @@ export default function ProductDetailScreen() {
         <View style={{ height: isWeb ? 100 : 120 }} />
       </ScrollView>
 
-      {/* ── Sticky footer ── */}
-      {product.inStock && (
+      {/* ── Fixed footer — pinned to bottom like a bottom nav bar ── */}
+      {product.stock > 0 && (
         <View style={[
           styles.footer,
           {
@@ -322,7 +332,8 @@ const styles = StyleSheet.create({
   backLink: { fontSize: 15, fontFamily: 'GoogleSans_600SemiBold' },
 
   /* Hero */
-  heroActions: { position: 'absolute', top: 14, right: 14, gap: 10 },
+  heroTopBar: { position: 'absolute', left: 14, right: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', zIndex: 10 },
+  heroActions: { flexDirection: 'row', gap: 10 },
   heroBtn: { width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },
   heroCenter: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   heroBadge: { position: 'absolute', bottom: SHEET_RADIUS + 10, left: 14, paddingHorizontal: 10, paddingVertical: 4, borderRadius: 8 },
@@ -399,8 +410,22 @@ const styles = StyleSheet.create({
   reviewDate: { fontSize: 12, fontFamily: 'GoogleSans_400Regular', marginTop: 1 },
   reviewText: { fontSize: 14, fontFamily: 'GoogleSans_400Regular', lineHeight: 21 },
 
-  /* Footer */
-  footer: { flexDirection: 'row', paddingHorizontal: 16, paddingTop: 12, gap: 12 },
+  /* Footer — fixed like a bottom nav bar */
+  footer: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    flexDirection: 'row',
+    paddingHorizontal: 16,
+    paddingTop: 12,
+    gap: 12,
+    shadowColor: '#000',
+    shadowOpacity: 0.08,
+    shadowOffset: { width: 0, height: -2 },
+    shadowRadius: 8,
+    elevation: 12,
+  },
   cartBtn: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingVertical: 15, borderRadius: 14, borderWidth: 1.5 },
   cartBtnText: { fontSize: 14, fontFamily: 'GoogleSans_600SemiBold' },
   buyBtn: { flex: 1.3, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingVertical: 15, borderRadius: 14 },
