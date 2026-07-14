@@ -1,14 +1,16 @@
 import React from 'react';
-import { Platform, StyleSheet, useColorScheme, View } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 import { useColors } from '@/hooks/useColors';
-import { Feather } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import { BlurView } from 'expo-blur';
 import { isLiquidGlassAvailable } from 'expo-glass-effect';
 import { Tabs } from 'expo-router';
 import { Icon, Label, NativeTabs } from 'expo-router/unstable-native-tabs';
-import { SymbolView } from 'expo-symbols';
 import { useCart } from '@/context/CartContext';
+import { useTheme } from '@/context/ThemeContext';
 
+// NativeTabs + SF Symbols are iOS-only — never render on Android/web
+// to avoid Japanese-character fallbacks from SF Symbol rendering.
 function NativeTabLayout() {
   const { itemCount } = useCart();
   return (
@@ -39,8 +41,8 @@ function NativeTabLayout() {
 
 function ClassicTabLayout() {
   const colors = useColors();
-  const colorScheme = useColorScheme();
-  const isDark = colorScheme === 'dark';
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === 'dark';
   const isIOS = Platform.OS === 'ios';
   const isWeb = Platform.OS === 'web';
   const { itemCount } = useCart();
@@ -76,24 +78,18 @@ function ClassicTabLayout() {
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) =>
-            isIOS ? (
-              <SymbolView name="house" tintColor={color} size={24} />
-            ) : (
-              <Feather name="home" size={22} color={color} />
-            ),
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="home-outline" size={size ?? 23} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
         name="search"
         options={{
           title: 'Search',
-          tabBarIcon: ({ color }) =>
-            isIOS ? (
-              <SymbolView name="magnifyingglass" tintColor={color} size={24} />
-            ) : (
-              <Feather name="search" size={22} color={color} />
-            ),
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="search-outline" size={size ?? 23} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
@@ -106,36 +102,27 @@ function ClassicTabLayout() {
             fontFamily: 'Inter_700Bold',
             fontSize: 10,
           },
-          tabBarIcon: ({ color }) =>
-            isIOS ? (
-              <SymbolView name="bag" tintColor={color} size={24} />
-            ) : (
-              <Feather name="shopping-bag" size={22} color={color} />
-            ),
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="bag-outline" size={size ?? 23} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
         name="orders"
         options={{
           title: 'Orders',
-          tabBarIcon: ({ color }) =>
-            isIOS ? (
-              <SymbolView name="list.clipboard" tintColor={color} size={24} />
-            ) : (
-              <Feather name="package" size={22} color={color} />
-            ),
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="receipt-outline" size={size ?? 23} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
           title: 'Me',
-          tabBarIcon: ({ color }) =>
-            isIOS ? (
-              <SymbolView name="person.circle" tintColor={color} size={24} />
-            ) : (
-              <Feather name="user" size={22} color={color} />
-            ),
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="person-circle-outline" size={size ?? 23} color={color} />
+          ),
         }}
       />
     </Tabs>
@@ -143,7 +130,8 @@ function ClassicTabLayout() {
 }
 
 export default function TabLayout() {
-  if (isLiquidGlassAvailable()) {
+  // Only use NativeTabs + SF Symbols on iOS — they render Japanese glyphs on Android
+  if (Platform.OS === 'ios' && isLiquidGlassAvailable()) {
     return <NativeTabLayout />;
   }
   return <ClassicTabLayout />;
