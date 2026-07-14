@@ -16,6 +16,7 @@ import RatingStars from '@/components/RatingStars';
 const { width: SCREEN_W } = Dimensions.get('window');
 const HERO_HEIGHT = SCREEN_W * 0.95;
 const SHEET_RADIUS = 28;
+const HERO_ICON_SIZE = 22;
 
 /* Demo image variants — same product art, different gradient angle + icon,
    so the hero behaves like a real multi-photo swipe gallery. */
@@ -71,10 +72,9 @@ export default function ProductDetailScreen() {
   const [activeTab, setActiveTab] = useState<TabKey>('description');
   const [activeImage, setActiveImage] = useState(0);
 
-  // Monochrome floating buttons over the hero image: pure black on light mode,
-  // pure white on dark mode — flips per theme so it always pops off the photo.
-  const heroBtnBg = isDark ? '#FFFFFF' : '#000000';
-  const heroBtnIcon = isDark ? '#000000' : '#FFFFFF';
+  // Floating hero icons sit directly on the photo with a transparent
+  // background — always white so they stay visible over any gradient.
+  const heroBtnIcon = '#FFFFFF';
 
   const product = PRODUCTS.find(p => p.id === id);
 
@@ -150,25 +150,25 @@ export default function ProductDetailScreen() {
             ))}
           </ScrollView>
 
-          {/* Back button — top-left, floating over image */}
+          {/* Back button — top-left, floating over image, transparent bg */}
           <View style={[styles.heroTopBar, { top: insets.top + 8 }]} pointerEvents="box-none">
             <TouchableOpacity
-              style={[styles.heroBtn, { backgroundColor: heroBtnBg }]}
+              style={styles.heroBtn}
               onPress={() => router.back()}
             >
-              <BackChevronIcon size={17} color={heroBtnIcon} />
+              <BackChevronIcon size={HERO_ICON_SIZE} color={heroBtnIcon} />
             </TouchableOpacity>
 
             {/* Floating action buttons top-right */}
             <View style={styles.heroActions} pointerEvents="box-none">
               <TouchableOpacity
-                style={[styles.heroBtn, { backgroundColor: heroBtnBg }]}
+                style={styles.heroBtn}
                 onPress={() => { toggle(product); Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); }}
               >
-                <HeartIcon size={19} color={isWishlisted ? '#FF4D6D' : heroBtnIcon} />
+                <HeartIcon size={HERO_ICON_SIZE} color={isWishlisted ? '#FF4D6D' : heroBtnIcon} />
               </TouchableOpacity>
-              <TouchableOpacity style={[styles.heroBtn, { backgroundColor: heroBtnBg }]}>
-                <SvgIcon name="share-outline" size={19} color={heroBtnIcon} />
+              <TouchableOpacity style={styles.heroBtn}>
+                <SvgIcon name="share-outline" size={HERO_ICON_SIZE} color={heroBtnIcon} />
               </TouchableOpacity>
             </View>
           </View>
@@ -389,7 +389,7 @@ export default function ProductDetailScreen() {
           >
             <SvgIcon name="bag-add-outline" size={19} color={isDark ? '#000000' : colors.primary} />
             <Text style={[styles.cartBtnText, { color: isDark ? '#000000' : colors.primary }]}>
-              {inCart ? 'Add More' : 'Add to Cart'}
+              {inCart ? 'Add More' : 'Add to Bag'}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -516,6 +516,6 @@ const styles = StyleSheet.create({
   },
   cartBtn: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingVertical: 15, borderRadius: 14, borderWidth: 1.5 },
   cartBtnText: { fontSize: 14, fontFamily: 'GoogleSans_600SemiBold' },
-  buyBtn: { flex: 1.3, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingVertical: 15, borderRadius: 14 },
+  buyBtn: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingVertical: 15, borderRadius: 14 },
   buyBtnText: { fontSize: 15, fontFamily: 'GoogleSans_700Bold' },
 });
