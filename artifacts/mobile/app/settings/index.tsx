@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Platform, ScrollView, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import SvgIcon from '@/components/SvgIcon';
 import { useColors } from '@/hooks/useColors';
 import { useTheme, ThemeMode } from '@/context/ThemeContext';
 
@@ -44,7 +44,7 @@ export default function SettingsScreen() {
                 activeOpacity={0.8}
               >
                 <View style={[styles.themeIconWrap, { backgroundColor: active ? colors.primary : colors.background }]}>
-                  <Ionicons name={opt.icon as any} size={22} color={active ? '#fff' : colors.mutedForeground} />
+                  <SvgIcon name={opt.icon as any} size={22} color={active ? '#fff' : colors.mutedForeground} />
                 </View>
                 <Text style={[styles.themeLabel, { color: active ? colors.primary : colors.foreground }]}>
                   {opt.label}
@@ -54,7 +54,7 @@ export default function SettingsScreen() {
                 </Text>
                 {active && (
                   <View style={[styles.activeCheck, { backgroundColor: colors.primary }]}>
-                    <Ionicons name="checkmark" size={11} color="#fff" />
+                    <SvgIcon name="checkmark" size={11} color="#fff" />
                   </View>
                 )}
               </TouchableOpacity>
@@ -73,7 +73,7 @@ export default function SettingsScreen() {
         ].map(item => (
           <View key={item.label} style={[styles.toggleRow, { borderBottomColor: colors.border }]}>
             <View style={[styles.menuIcon, { backgroundColor: colors.primary + '15' }]}>
-              <Ionicons name={item.icon as any} size={18} color={colors.primary} />
+              <SvgIcon name={item.icon as any} size={18} color={colors.primary} />
             </View>
             <View style={styles.toggleInfo}>
               <Text style={[styles.toggleLabel, { color: colors.foreground }]}>{item.label}</Text>
@@ -100,10 +100,10 @@ export default function SettingsScreen() {
         ].map(item => (
           <TouchableOpacity key={item.label} style={[styles.menuRow, { borderBottomColor: colors.border }]}>
             <View style={[styles.menuIcon, { backgroundColor: colors.muted }]}>
-              <Ionicons name={item.icon as any} size={18} color={colors.mutedForeground} />
+              <SvgIcon name={item.icon as any} size={18} color={colors.mutedForeground} />
             </View>
             <Text style={[styles.menuLabel, { color: colors.foreground }]}>{item.label}</Text>
-            <Ionicons name="chevron-forward" size={16} color={colors.mutedForeground} />
+            <SvgIcon name="chevron-forward" size={16} color={colors.mutedForeground} />
           </TouchableOpacity>
         ))}
       </View>
@@ -118,10 +118,10 @@ export default function SettingsScreen() {
         ].map(item => (
           <TouchableOpacity key={item.label} style={[styles.menuRow, { borderBottomColor: colors.border }]}>
             <View style={[styles.menuIcon, { backgroundColor: colors.muted }]}>
-              <Ionicons name={item.icon as any} size={18} color={colors.mutedForeground} />
+              <SvgIcon name={item.icon as any} size={18} color={colors.mutedForeground} />
             </View>
             <Text style={[styles.menuLabel, { color: colors.foreground }]}>{item.label}</Text>
-            <Ionicons name="chevron-forward" size={16} color={colors.mutedForeground} />
+            <SvgIcon name="chevron-forward" size={16} color={colors.mutedForeground} />
           </TouchableOpacity>
         ))}
       </View>

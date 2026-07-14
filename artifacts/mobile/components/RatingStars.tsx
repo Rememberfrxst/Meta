@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import SvgIcon from '@/components/SvgIcon';
 import { useColors } from '@/hooks/useColors';
 
 export default function RatingStars({ rating, size = 14 }: { rating: number; size?: number }) {
@@ -8,7 +8,7 @@ export default function RatingStars({ rating, size = 14 }: { rating: number; siz
   return (
     <View style={styles.row}>
       {[1, 2, 3, 4, 5].map(i => (
-        <Ionicons
+        <SvgIcon
           key={i}
           name={i <= rating ? 'star' : i - 0.5 <= rating ? 'star-half' : 'star-outline'}
           size={size}

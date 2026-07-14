@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { router } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Ionicons } from '@expo/vector-icons';
+import SvgIcon from '@/components/SvgIcon';
 import * as Haptics from 'expo-haptics';
 import * as Location from 'expo-location';
 import { useColors } from '@/hooks/useColors';
@@ -107,17 +107,17 @@ export default function HomeScreen() {
                 setLocationIcon('location');
               }
             }}>
-              <Ionicons name={locationIcon} size={12} color="rgba(255,255,255,0.9)" />
+              <SvgIcon name={locationIcon} size={12} color="rgba(255,255,255,0.9)" />
               <Text style={styles.location} numberOfLines={1}>{locationStr}</Text>
-              <Ionicons name="chevron-down" size={10} color="rgba(255,255,255,0.7)" />
+              <SvgIcon name="chevron-down" size={10} color="rgba(255,255,255,0.7)" />
             </TouchableOpacity>
           </View>
           <View style={styles.headerActions}>
             <TouchableOpacity style={styles.iconBtn} onPress={() => router.push('/wishlist')}>
-              <Ionicons name="heart-outline" size={22} color="#fff" />
+              <SvgIcon name="heart-outline" size={22} color="#fff" />
             </TouchableOpacity>
             <TouchableOpacity style={styles.iconBtn}>
-              <Ionicons name="notifications-outline" size={22} color="#fff" />
+              <SvgIcon name="notifications-outline" size={22} color="#fff" />
             </TouchableOpacity>
           </View>
         </View>
@@ -126,9 +126,9 @@ export default function HomeScreen() {
           onPress={() => router.push('/search')}
           activeOpacity={0.88}
         >
-          <Ionicons name="search" size={18} color={colors.mutedForeground} />
+          <SvgIcon name="search" size={18} color={colors.mutedForeground} />
           <Text style={[styles.searchHint, { color: colors.mutedForeground }]}>Search products, brands & more</Text>
-          <Ionicons name="mic-outline" size={18} color={colors.primary} />
+          <SvgIcon name="mic-outline" size={18} color={colors.primary} />
         </TouchableOpacity>
       </View>
 

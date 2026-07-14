@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Alert, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { router } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Ionicons } from '@expo/vector-icons';
+import SvgIcon from '@/components/SvgIcon';
 import { useColors } from '@/hooks/useColors';
 import { useAuth } from '@/context/AuthContext';
 
@@ -43,7 +43,7 @@ export default function LoginScreen() {
       {/* Close button */}
       <View style={{ paddingTop: isWeb ? 67 : insets.top + 10, paddingHorizontal: 20 }}>
         <TouchableOpacity style={[styles.closeBtn, { backgroundColor: colors.muted }]} onPress={() => router.back()}>
-          <Ionicons name="close" size={22} color={colors.foreground} />
+          <SvgIcon name="close" size={22} color={colors.foreground} />
         </TouchableOpacity>
       </View>
 
@@ -62,7 +62,7 @@ export default function LoginScreen() {
 
         {/* Demo hint */}
         <View style={[styles.hint, { backgroundColor: colors.primary + '15', borderColor: colors.primary }]}>
-          <Ionicons name="information-circle" size={16} color={colors.primary} />
+          <SvgIcon name="information-circle" size={16} color={colors.primary} />
           <Text style={[styles.hintText, { color: colors.primary }]}>Demo: demo@griper.in / demo123</Text>
         </View>
 
@@ -71,7 +71,7 @@ export default function LoginScreen() {
           <View style={styles.field}>
             <Text style={[styles.label, { color: colors.foreground }]}>Email</Text>
             <View style={[styles.inputWrap, { backgroundColor: colors.input, borderColor: colors.border }]}>
-              <Ionicons name="mail-outline" size={18} color={colors.mutedForeground} />
+              <SvgIcon name="mail-outline" size={18} color={colors.mutedForeground} />
               <TextInput
                 style={[styles.input, { color: colors.foreground, fontFamily: 'GoogleSans_400Regular' }]}
                 placeholder="you@example.com"
@@ -88,7 +88,7 @@ export default function LoginScreen() {
           <View style={styles.field}>
             <Text style={[styles.label, { color: colors.foreground }]}>Password</Text>
             <View style={[styles.inputWrap, { backgroundColor: colors.input, borderColor: colors.border }]}>
-              <Ionicons name="lock-closed-outline" size={18} color={colors.mutedForeground} />
+              <SvgIcon name="lock-closed-outline" size={18} color={colors.mutedForeground} />
               <TextInput
                 style={[styles.input, { color: colors.foreground, fontFamily: 'GoogleSans_400Regular' }]}
                 placeholder="Your password"
@@ -98,7 +98,7 @@ export default function LoginScreen() {
                 secureTextEntry={!showPw}
               />
               <TouchableOpacity onPress={() => setShowPw(s => !s)}>
-                <Ionicons name={showPw ? 'eye-off-outline' : 'eye-outline'} size={18} color={colors.mutedForeground} />
+                <SvgIcon name={showPw ? 'eye-off-outline' : 'eye-outline'} size={18} color={colors.mutedForeground} />
               </TouchableOpacity>
             </View>
           </View>

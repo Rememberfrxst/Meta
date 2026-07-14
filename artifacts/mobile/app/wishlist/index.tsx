@@ -1,7 +1,7 @@
 import React from 'react';
 import { FlatList, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { router } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import SvgIcon from '@/components/SvgIcon';
 import * as Haptics from 'expo-haptics';
 import { useColors } from '@/hooks/useColors';
 import { useWishlist } from '@/context/WishlistContext';
@@ -30,7 +30,7 @@ export default function WishlistScreen() {
         ListEmptyComponent={
           <View style={styles.empty}>
             <View style={[styles.emptyIcon, { backgroundColor: colors.muted }]}>
-              <Ionicons name="heart-outline" size={48} color={colors.mutedForeground} />
+              <SvgIcon name="heart-outline" size={48} color={colors.mutedForeground} />
             </View>
             <Text style={[styles.emptyTitle, { color: colors.foreground }]}>Your wishlist is empty</Text>
             <Text style={[styles.emptySubtitle, { color: colors.mutedForeground }]}>Save items you love by tapping the heart icon</Text>
@@ -59,7 +59,7 @@ export default function WishlistScreen() {
               router.push('/cart');
             }}
           >
-            <Ionicons name="bag-add" size={18} color={colors.primaryForeground} />
+            <SvgIcon name="bag-add" size={18} color={colors.primaryForeground} />
             <Text style={[styles.addAllText, { color: colors.primaryForeground }]}>Add All to Cart</Text>
           </TouchableOpacity>
         </View>

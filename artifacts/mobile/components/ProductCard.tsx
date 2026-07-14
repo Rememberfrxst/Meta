@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Ionicons } from '@expo/vector-icons';
+import SvgIcon from '@/components/SvgIcon';
 import { useColors } from '@/hooks/useColors';
 import { Product, formatPrice } from '@/constants/data';
 import RatingStars from './RatingStars';
@@ -43,7 +43,7 @@ export default function ProductCard({ product, onPress, isWishlisted = false, on
               onPress={onWishlistToggle}
               hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             >
-              <Ionicons
+              <SvgIcon
                 name={isWishlisted ? 'heart' : 'heart-outline'}
                 size={16}
                 color={isWishlisted ? '#FF4D6D' : '#fff'}
@@ -54,7 +54,7 @@ export default function ProductCard({ product, onPress, isWishlisted = false, on
 
         {/* Center product icon hint */}
         <View style={styles.centerHint}>
-          <Ionicons name="cube-outline" size={36} color="rgba(255,255,255,0.35)" />
+          <SvgIcon name="cube-outline" size={36} color="rgba(255,255,255,0.35)" />
         </View>
 
         {product.isExpress && (

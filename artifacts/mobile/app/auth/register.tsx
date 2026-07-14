@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Alert, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { router } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Ionicons } from '@expo/vector-icons';
+import SvgIcon from '@/components/SvgIcon';
 import { useColors } from '@/hooks/useColors';
 import { useAuth } from '@/context/AuthContext';
 
@@ -48,7 +48,7 @@ export default function RegisterScreen() {
     >
       <View style={{ paddingTop: isWeb ? 67 : insets.top + 10, paddingHorizontal: 20 }}>
         <TouchableOpacity style={[styles.closeBtn, { backgroundColor: colors.muted }]} onPress={() => router.back()}>
-          <Ionicons name="close" size={22} color={colors.foreground} />
+          <SvgIcon name="close" size={22} color={colors.foreground} />
         </TouchableOpacity>
       </View>
 
@@ -72,7 +72,7 @@ export default function RegisterScreen() {
             <View key={field.label} style={styles.field}>
               <Text style={[styles.label, { color: colors.foreground }]}>{field.label}</Text>
               <View style={[styles.inputWrap, { backgroundColor: colors.input, borderColor: colors.border }]}>
-                <Ionicons name={field.icon as any} size={18} color={colors.mutedForeground} />
+                <SvgIcon name={field.icon as any} size={18} color={colors.mutedForeground} />
                 <TextInput
                   style={[styles.input, { color: colors.foreground, fontFamily: 'GoogleSans_400Regular' }]}
                   placeholder={field.placeholder}
@@ -90,7 +90,7 @@ export default function RegisterScreen() {
           <View style={styles.field}>
             <Text style={[styles.label, { color: colors.foreground }]}>Password</Text>
             <View style={[styles.inputWrap, { backgroundColor: colors.input, borderColor: colors.border }]}>
-              <Ionicons name="lock-closed-outline" size={18} color={colors.mutedForeground} />
+              <SvgIcon name="lock-closed-outline" size={18} color={colors.mutedForeground} />
               <TextInput
                 style={[styles.input, { color: colors.foreground, fontFamily: 'GoogleSans_400Regular' }]}
                 placeholder="Min. 6 characters"
@@ -100,7 +100,7 @@ export default function RegisterScreen() {
                 secureTextEntry={!showPw}
               />
               <TouchableOpacity onPress={() => setShowPw(s => !s)}>
-                <Ionicons name={showPw ? 'eye-off-outline' : 'eye-outline'} size={18} color={colors.mutedForeground} />
+                <SvgIcon name={showPw ? 'eye-off-outline' : 'eye-outline'} size={18} color={colors.mutedForeground} />
               </TouchableOpacity>
             </View>
           </View>

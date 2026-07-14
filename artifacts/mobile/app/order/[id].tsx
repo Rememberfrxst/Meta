@@ -3,7 +3,7 @@ import { Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from '
 import { useLocalSearchParams, router } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Ionicons } from '@expo/vector-icons';
+import SvgIcon from '@/components/SvgIcon';
 import { useColors } from '@/hooks/useColors';
 import { useCart } from '@/context/CartContext';
 import { formatPrice, Order } from '@/constants/data';
@@ -30,7 +30,7 @@ export default function OrderDetailScreen() {
   if (!order) {
     return (
       <View style={[styles.notFound, { backgroundColor: colors.background }]}>
-        <Ionicons name="bag-outline" size={48} color={colors.mutedForeground} />
+        <SvgIcon name="bag-outline" size={48} color={colors.mutedForeground} />
         <Text style={[styles.notFoundText, { color: colors.foreground }]}>Order not found</Text>
         <TouchableOpacity onPress={() => router.back()}>
           <Text style={[styles.link, { color: colors.primary }]}>Go Back</Text>
@@ -48,7 +48,7 @@ export default function OrderDetailScreen() {
         backgroundColor: order.status === 'delivered' ? colors.success + '15' :
           order.status === 'cancelled' ? colors.destructive + '15' : colors.primary + '15'
       }]}>
-        <Ionicons
+        <SvgIcon
           name={order.status === 'delivered' ? 'checkmark-done-circle' : order.status === 'cancelled' ? 'close-circle' : 'time'}
           size={28}
           color={order.status === 'delivered' ? colors.success : order.status === 'cancelled' ? colors.destructive : colors.primary}
@@ -105,7 +105,7 @@ export default function OrderDetailScreen() {
                     backgroundColor: done ? colors.success : colors.muted,
                     borderColor: done ? colors.success : colors.border,
                   }]}>
-                    {done && <Ionicons name="checkmark" size={12} color="#fff" />}
+                    {done && <SvgIcon name="checkmark" size={12} color="#fff" />}
                     {!done && <View style={[styles.dotEmpty, { backgroundColor: colors.border }]} />}
                   </View>
                   {i < TIMELINE_STEPS.length - 1 && (
@@ -114,7 +114,7 @@ export default function OrderDetailScreen() {
                 </View>
                 <View style={styles.timelineContent}>
                   <View style={[styles.timelineIconWrap, { backgroundColor: done ? colors.success + '20' : colors.muted }]}>
-                    <Ionicons name={step.icon as any} size={18} color={done ? colors.success : colors.mutedForeground} />
+                    <SvgIcon name={step.icon as any} size={18} color={done ? colors.success : colors.mutedForeground} />
                   </View>
                   <View style={{ flex: 1 }}>
                     <Text style={[styles.timelineLabel, { color: done ? colors.foreground : colors.mutedForeground, fontFamily: active ? 'GoogleSans_700Bold' : 'GoogleSans_500Medium' }]}>

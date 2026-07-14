@@ -3,7 +3,7 @@ import { Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from '
 import { router } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Ionicons } from '@expo/vector-icons';
+import SvgIcon from '@/components/SvgIcon';
 import { useColors } from '@/hooks/useColors';
 import { useCart } from '@/context/CartContext';
 import { formatPrice, Order } from '@/constants/data';
@@ -52,7 +52,7 @@ function OrderCard({ order }: { order: Order }) {
           </Text>
         </View>
         <View style={[styles.statusBadge, { backgroundColor: statusColor + '22', borderColor: statusColor }]}>
-          <Ionicons name={STATUS_ICONS[order.status] as any} size={12} color={statusColor} />
+          <SvgIcon name={STATUS_ICONS[order.status] as any} size={12} color={statusColor} />
           <Text style={[styles.statusText, { color: statusColor }]}>{STATUS_LABELS[order.status]}</Text>
         </View>
       </View>
@@ -75,7 +75,7 @@ function OrderCard({ order }: { order: Order }) {
           <Text style={[styles.trackText, { color: colors.primary }]}>
             {order.status === 'delivered' ? 'View Details' : 'Track Order'}
           </Text>
-          <Ionicons name="chevron-forward" size={14} color={colors.primary} />
+          <SvgIcon name="chevron-forward" size={14} color={colors.primary} />
         </View>
       </View>
       {order.status !== 'delivered' && order.status !== 'cancelled' && (
@@ -127,7 +127,7 @@ export default function OrdersScreen() {
         {shown.length === 0 ? (
           <View style={styles.empty}>
             <View style={[styles.emptyIcon, { backgroundColor: colors.muted }]}>
-              <Ionicons name="bag-outline" size={48} color={colors.mutedForeground} />
+              <SvgIcon name="bag-outline" size={48} color={colors.mutedForeground} />
             </View>
             <Text style={[styles.emptyTitle, { color: colors.foreground }]}>No orders yet</Text>
             <Text style={[styles.emptySubtitle, { color: colors.mutedForeground }]}>Your {tab} orders will appear here</Text>

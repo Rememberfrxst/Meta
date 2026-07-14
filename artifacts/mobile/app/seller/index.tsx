@@ -3,7 +3,7 @@ import { Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from '
 import { router } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Ionicons } from '@expo/vector-icons';
+import SvgIcon from '@/components/SvgIcon';
 import { useColors } from '@/hooks/useColors';
 import { useAuth } from '@/context/AuthContext';
 import { formatPrice, SELLER_PRODUCTS } from '@/constants/data';
@@ -27,7 +27,7 @@ export default function SellerDashboardScreen() {
   if (!user) {
     return (
       <View style={[styles.authPrompt, { backgroundColor: colors.background }]}>
-        <Ionicons name="storefront-outline" size={56} color={colors.mutedForeground} />
+        <SvgIcon name="storefront-outline" size={56} color={colors.mutedForeground} />
         <Text style={[styles.authTitle, { color: colors.foreground }]}>Sign In to Access Seller Hub</Text>
         <TouchableOpacity style={[styles.authBtn, { backgroundColor: colors.primary }]} onPress={() => router.push('/auth/login')}>
           <Text style={[styles.authBtnText, { color: colors.primaryForeground }]}>Sign In</Text>
@@ -40,7 +40,7 @@ export default function SellerDashboardScreen() {
     return (
       <ScrollView style={[styles.container, { backgroundColor: colors.background }]} contentContainerStyle={{ flexGrow: 1 }}>
         <LinearGradient colors={['#7C3AED', '#4F46E5']} style={styles.becomeHero}>
-          <Ionicons name="storefront" size={60} color="#fff" />
+          <SvgIcon name="storefront" size={60} color="#fff" />
           <Text style={styles.becomeTitle}>Start Selling on Griper</Text>
           <Text style={styles.becomeSubtitle}>Reach millions of customers across India and globally</Text>
         </LinearGradient>
@@ -54,7 +54,7 @@ export default function SellerDashboardScreen() {
           ].map(f => (
             <View key={f.title} style={[styles.featureRow, { borderBottomColor: colors.border }]}>
               <View style={[styles.featureIcon, { backgroundColor: colors.primary + '18' }]}>
-                <Ionicons name={f.icon as any} size={22} color={colors.primary} />
+                <SvgIcon name={f.icon as any} size={22} color={colors.primary} />
               </View>
               <View>
                 <Text style={[styles.featureTitle, { color: colors.foreground }]}>{f.title}</Text>
@@ -69,7 +69,7 @@ export default function SellerDashboardScreen() {
             style={[styles.becomeBtn, { backgroundColor: colors.primary }]}
             onPress={() => { becomeSeller(); }}
           >
-            <Ionicons name="storefront" size={20} color={colors.primaryForeground} />
+            <SvgIcon name="storefront" size={20} color={colors.primaryForeground} />
             <Text style={[styles.becomeBtnText, { color: colors.primaryForeground }]}>Become a Seller</Text>
           </TouchableOpacity>
           <Text style={[styles.becomeDisclaimer, { color: colors.mutedForeground }]}>
@@ -92,7 +92,7 @@ export default function SellerDashboardScreen() {
           <Text style={styles.sellerBadge}>Verified Seller</Text>
         </View>
         <TouchableOpacity style={styles.addProductBtn}>
-          <Ionicons name="add-circle" size={22} color="#fff" />
+          <SvgIcon name="add-circle" size={22} color="#fff" />
           <Text style={styles.addProductText}>Add Product</Text>
         </TouchableOpacity>
       </LinearGradient>
@@ -102,7 +102,7 @@ export default function SellerDashboardScreen() {
         {STATS.map(stat => (
           <View key={stat.label} style={[styles.statCard, { backgroundColor: colors.card }]}>
             <View style={[styles.statIcon, { backgroundColor: stat.color + '20' }]}>
-              <Ionicons name={stat.icon as any} size={22} color={stat.color} />
+              <SvgIcon name={stat.icon as any} size={22} color={stat.color} />
             </View>
             <Text style={[styles.statValue, { color: colors.foreground }]}>{stat.value}</Text>
             <Text style={[styles.statLabel, { color: colors.mutedForeground }]}>{stat.label}</Text>
@@ -137,7 +137,7 @@ export default function SellerDashboardScreen() {
               <Text style={[styles.revenueLabel, { color: colors.mutedForeground }]}>Revenue</Text>
             </View>
             <TouchableOpacity>
-              <Ionicons name="ellipsis-vertical" size={18} color={colors.mutedForeground} />
+              <SvgIcon name="ellipsis-vertical" size={18} color={colors.mutedForeground} />
             </TouchableOpacity>
           </View>
         ))}

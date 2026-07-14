@@ -2,7 +2,7 @@ import React from 'react';
 import { Alert, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { router } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Ionicons } from '@expo/vector-icons';
+import SvgIcon from '@/components/SvgIcon';
 import { useColors } from '@/hooks/useColors';
 import { useAuth } from '@/context/AuthContext';
 import { useLanguage } from '@/context/LanguageContext';
@@ -20,13 +20,13 @@ function MenuRow({ icon, label, sub, onPress, color }: MenuItem) {
   return (
     <TouchableOpacity style={[styles.menuRow, { borderBottomColor: colors.border }]} onPress={onPress} activeOpacity={0.7}>
       <View style={[styles.menuIcon, { backgroundColor: (color || colors.primary) + '18' }]}>
-        <Ionicons name={icon as any} size={20} color={color || colors.primary} />
+        <SvgIcon name={icon as any} size={20} color={color || colors.primary} />
       </View>
       <View style={styles.menuLabel}>
         <Text style={[styles.menuText, { color: colors.foreground }]}>{label}</Text>
         {sub && <Text style={[styles.menuSub, { color: colors.mutedForeground }]}>{sub}</Text>}
       </View>
-      <Ionicons name="chevron-forward" size={16} color={colors.mutedForeground} />
+      <SvgIcon name="chevron-forward" size={16} color={colors.mutedForeground} />
     </TouchableOpacity>
   );
 }
@@ -72,7 +72,7 @@ export default function ProfileScreen() {
             </View>
             {user.isSeller && (
               <View style={styles.sellerBadge}>
-                <Ionicons name="storefront" size={14} color="#fff" />
+                <SvgIcon name="storefront" size={14} color="#fff" />
                 <Text style={styles.sellerBadgeText}>Seller</Text>
               </View>
             )}
@@ -80,7 +80,7 @@ export default function ProfileScreen() {
         ) : (
           <View style={[styles.guestCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
             <View style={[styles.guestAvatar, { backgroundColor: colors.muted }]}>
-              <Ionicons name="person-outline" size={40} color={colors.mutedForeground} />
+              <SvgIcon name="person-outline" size={40} color={colors.mutedForeground} />
             </View>
             <Text style={[styles.guestTitle, { color: colors.foreground }]}>Welcome to Griper</Text>
             <Text style={[styles.guestSubtitle, { color: colors.mutedForeground }]}>Sign in to view orders, wishlist & more</Text>
@@ -122,7 +122,7 @@ export default function ProfileScreen() {
           {/* Language picker inline */}
           <View style={[styles.langSection, { borderBottomColor: colors.border }]}>
             <View style={[styles.menuIcon, { backgroundColor: colors.primary + '18' }]}>
-              <Ionicons name="language-outline" size={20} color={colors.primary} />
+              <SvgIcon name="language-outline" size={20} color={colors.primary} />
             </View>
             <View style={styles.menuLabel}>
               <Text style={[styles.menuText, { color: colors.foreground }]}>Language</Text>
@@ -166,7 +166,7 @@ export default function ProfileScreen() {
         {/* Sign Out */}
         {user && (
           <TouchableOpacity style={[styles.signOutBtn, { backgroundColor: colors.card, borderColor: colors.destructive }]} onPress={handleLogout}>
-            <Ionicons name="log-out-outline" size={20} color={colors.destructive} />
+            <SvgIcon name="log-out-outline" size={20} color={colors.destructive} />
             <Text style={[styles.signOutText, { color: colors.destructive }]}>Sign Out</Text>
           </TouchableOpacity>
         )}

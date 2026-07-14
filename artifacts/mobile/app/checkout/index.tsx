@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Alert, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { router } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Ionicons } from '@expo/vector-icons';
+import SvgIcon from '@/components/SvgIcon';
 import * as Haptics from 'expo-haptics';
 import { useColors } from '@/hooks/useColors';
 import { useCart } from '@/context/CartContext';
@@ -43,7 +43,7 @@ export default function CheckoutScreen() {
   if (items.length === 0) {
     return (
       <View style={[styles.empty, { backgroundColor: colors.background }]}>
-        <Ionicons name="bag-outline" size={48} color={colors.mutedForeground} />
+        <SvgIcon name="bag-outline" size={48} color={colors.mutedForeground} />
         <Text style={[styles.emptyText, { color: colors.foreground }]}>Nothing in cart</Text>
         <TouchableOpacity style={[styles.shopBtn, { backgroundColor: colors.primary }]} onPress={() => router.replace('/')}>
           <Text style={[styles.shopBtnText, { color: colors.primaryForeground }]}>Start Shopping</Text>
@@ -81,7 +81,7 @@ export default function CheckoutScreen() {
         {/* Delivery Address */}
         <View style={[styles.section, { backgroundColor: colors.card }]}>
           <View style={styles.sectionHead}>
-            <Ionicons name="location" size={18} color={colors.primary} />
+            <SvgIcon name="location" size={18} color={colors.primary} />
             <Text style={[styles.sectionTitle, { color: colors.foreground }]}>Delivery Address</Text>
           </View>
           <View style={[styles.addressCard, { backgroundColor: colors.muted, borderColor: colors.primary }]}>
@@ -94,7 +94,7 @@ export default function CheckoutScreen() {
             <Text style={[styles.addrPhone, { color: colors.mutedForeground }]}>{address.phone}</Text>
           </View>
           <TouchableOpacity style={[styles.changeAddr, { borderColor: colors.border }]}>
-            <Ionicons name="add-circle-outline" size={18} color={colors.primary} />
+            <SvgIcon name="add-circle-outline" size={18} color={colors.primary} />
             <Text style={[styles.changeAddrText, { color: colors.primary }]}>Add / Change Address</Text>
           </TouchableOpacity>
         </View>
@@ -102,7 +102,7 @@ export default function CheckoutScreen() {
         {/* Payment */}
         <View style={[styles.section, { backgroundColor: colors.card, marginTop: 8 }]}>
           <View style={styles.sectionHead}>
-            <Ionicons name="card" size={18} color={colors.primary} />
+            <SvgIcon name="card" size={18} color={colors.primary} />
             <Text style={[styles.sectionTitle, { color: colors.foreground }]}>Payment Method</Text>
           </View>
           {PAYMENT_METHODS.map(pm => (
@@ -112,7 +112,7 @@ export default function CheckoutScreen() {
               onPress={() => setPaymentMethod(pm.key)}
             >
               <View style={[styles.paymentIcon, { backgroundColor: paymentMethod === pm.key ? colors.primary + '20' : colors.muted }]}>
-                <Ionicons name={pm.icon as any} size={22} color={paymentMethod === pm.key ? colors.primary : colors.mutedForeground} />
+                <SvgIcon name={pm.icon as any} size={22} color={paymentMethod === pm.key ? colors.primary : colors.mutedForeground} />
               </View>
               <View style={styles.paymentInfo}>
                 <Text style={[styles.paymentLabel, { color: colors.foreground }]}>{pm.label}</Text>
@@ -138,7 +138,7 @@ export default function CheckoutScreen() {
           )}
           {paymentMethod === 'razorpay' && (
             <View style={[styles.razorpayNote, { backgroundColor: colors.muted }]}>
-              <Ionicons name="shield-checkmark" size={16} color={colors.success} />
+              <SvgIcon name="shield-checkmark" size={16} color={colors.success} />
               <Text style={[styles.razorpayText, { color: colors.mutedForeground }]}>Secure payment powered by Razorpay</Text>
             </View>
           )}
@@ -147,7 +147,7 @@ export default function CheckoutScreen() {
         {/* Order Summary */}
         <View style={[styles.section, { backgroundColor: colors.card, marginTop: 8 }]}>
           <View style={styles.sectionHead}>
-            <Ionicons name="receipt" size={18} color={colors.primary} />
+            <SvgIcon name="receipt" size={18} color={colors.primary} />
             <Text style={[styles.sectionTitle, { color: colors.foreground }]}>Order Summary</Text>
           </View>
           {items.map(item => (
@@ -197,7 +197,7 @@ export default function CheckoutScreen() {
           ) : (
             <>
               <Text style={[styles.placeBtnText, { color: colors.primaryForeground }]}>Place Order</Text>
-              <Ionicons name="arrow-forward" size={18} color={colors.primaryForeground} />
+              <SvgIcon name="arrow-forward" size={18} color={colors.primaryForeground} />
             </>
           )}
         </TouchableOpacity>

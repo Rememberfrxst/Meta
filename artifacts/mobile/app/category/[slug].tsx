@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { FlatList, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useLocalSearchParams, router } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import SvgIcon from '@/components/SvgIcon';
 import * as Haptics from 'expo-haptics';
 import { useColors } from '@/hooks/useColors';
 import { CATEGORIES, PRODUCTS } from '@/constants/data';
@@ -48,7 +48,7 @@ export default function CategoryScreen() {
             {category && (
               <View style={[styles.hero, { backgroundColor: category.color + '22' }]}>
                 <View style={[styles.heroIcon, { backgroundColor: category.color }]}>
-                  <Ionicons name={category.icon as any} size={32} color="#fff" />
+                  <SvgIcon name={category.icon as any} size={32} color="#fff" />
                 </View>
                 <Text style={[styles.heroTitle, { color: colors.foreground }]}>{category.name}</Text>
                 <Text style={[styles.heroCount, { color: colors.mutedForeground }]}>{products.length} products</Text>

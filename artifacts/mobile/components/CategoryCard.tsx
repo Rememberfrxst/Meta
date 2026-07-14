@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Ionicons } from '@expo/vector-icons';
+import SvgIcon from '@/components/SvgIcon';
 import { useColors } from '@/hooks/useColors';
 import { Category } from '@/constants/data';
 
@@ -15,7 +15,7 @@ export default function CategoryCard({ category, onPress }: { category: Category
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
       >
-        <Ionicons name={category.icon as any} size={26} color="#fff" />
+        <SvgIcon name={category.icon as any} size={26} color="#fff" />
       </LinearGradient>
       <Text style={[styles.label, { color: colors.foreground }]} numberOfLines={1}>
         {category.name}

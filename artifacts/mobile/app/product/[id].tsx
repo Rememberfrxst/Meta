@@ -3,7 +3,7 @@ import { Alert, Dimensions, Platform, ScrollView, StyleSheet, Text, TouchableOpa
 import { useLocalSearchParams, router } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Ionicons } from '@expo/vector-icons';
+import SvgIcon from '@/components/SvgIcon';
 import * as Haptics from 'expo-haptics';
 import { useColors } from '@/hooks/useColors';
 import { PRODUCTS, formatPrice } from '@/constants/data';
@@ -39,7 +39,7 @@ export default function ProductDetailScreen() {
   if (!product) {
     return (
       <View style={[styles.notFound, { backgroundColor: colors.background }]}>
-        <Ionicons name="cube-outline" size={56} color={colors.mutedForeground} />
+        <SvgIcon name="cube-outline" size={56} color={colors.mutedForeground} />
         <Text style={[styles.notFoundText, { color: colors.foreground }]}>Product not found</Text>
         <TouchableOpacity onPress={() => router.back()}>
           <Text style={[styles.backLink, { color: colors.primary }]}>Go Back</Text>
@@ -93,16 +93,16 @@ export default function ProductDetailScreen() {
               style={[styles.heroBtn, { backgroundColor: 'rgba(0,0,0,0.32)' }]}
               onPress={() => { toggle(product); Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); }}
             >
-              <Ionicons name={isWishlisted ? 'heart' : 'heart-outline'} size={21} color={isWishlisted ? '#FF4D6D' : '#fff'} />
+              <SvgIcon name={isWishlisted ? 'heart' : 'heart-outline'} size={21} color={isWishlisted ? '#FF4D6D' : '#fff'} />
             </TouchableOpacity>
             <TouchableOpacity style={[styles.heroBtn, { backgroundColor: 'rgba(0,0,0,0.32)' }]}>
-              <Ionicons name="share-outline" size={21} color="#fff" />
+              <SvgIcon name="share-outline" size={21} color="#fff" />
             </TouchableOpacity>
           </View>
 
           {/* Center product icon placeholder */}
           <View style={styles.heroCenter}>
-            <Ionicons name="cube-outline" size={80} color="rgba(255,255,255,0.25)" />
+            <SvgIcon name="cube-outline" size={80} color="rgba(255,255,255,0.25)" />
           </View>
 
           {/* Discount badge bottom-left */}
@@ -115,7 +115,7 @@ export default function ProductDetailScreen() {
           {/* Express badge bottom-right */}
           {product.isExpress && (
             <View style={[styles.heroExpress, { backgroundColor: colors.accent }]}>
-              <Ionicons name="flash" size={12} color="#fff" />
+              <SvgIcon name="flash" size={12} color="#fff" />
               <Text style={styles.heroExpressText}>EXPRESS</Text>
             </View>
           )}
@@ -158,7 +158,7 @@ export default function ProductDetailScreen() {
               <Text style={[styles.reviewCount, { color: colors.mutedForeground }]}>
                 ({product.reviewCount.toLocaleString()})
               </Text>
-              <Ionicons name="chevron-forward" size={14} color={colors.mutedForeground} />
+              <SvgIcon name="chevron-forward" size={14} color={colors.mutedForeground} />
             </TouchableOpacity>
           </View>
 
@@ -186,13 +186,13 @@ export default function ProductDetailScreen() {
           <View style={styles.sheetPad}>
             {product.isExpress && (
               <View style={[styles.infoBanner, { backgroundColor: colors.accent + '14', borderColor: colors.accent + '50' }]}>
-                <Ionicons name="flash" size={15} color={colors.accent} />
+                <SvgIcon name="flash" size={15} color={colors.accent} />
                 <Text style={[styles.infoBannerText, { color: colors.accent }]}>Express Delivery Available</Text>
               </View>
             )}
             {!product.inStock && (
               <View style={[styles.infoBanner, { backgroundColor: colors.destructive + '14', borderColor: colors.destructive + '50' }]}>
-                <Ionicons name="close-circle" size={15} color={colors.destructive} />
+                <SvgIcon name="close-circle" size={15} color={colors.destructive} />
                 <Text style={[styles.infoBannerText, { color: colors.destructive }]}>Out of Stock</Text>
               </View>
             )}
@@ -205,14 +205,14 @@ export default function ProductDetailScreen() {
                   style={[styles.qtyBtn, { backgroundColor: colors.muted, borderColor: colors.border }]}
                   onPress={() => setQty(q => Math.max(1, q - 1))}
                 >
-                  <Ionicons name="remove" size={17} color={colors.foreground} />
+                  <SvgIcon name="remove" size={17} color={colors.foreground} />
                 </TouchableOpacity>
                 <Text style={[styles.qtyNum, { color: colors.foreground }]}>{qty}</Text>
                 <TouchableOpacity
                   style={[styles.qtyBtn, { backgroundColor: colors.muted, borderColor: colors.border }]}
                   onPress={() => setQty(q => Math.min(10, q + 1))}
                 >
-                  <Ionicons name="add" size={17} color={colors.foreground} />
+                  <SvgIcon name="add" size={17} color={colors.foreground} />
                 </TouchableOpacity>
               </View>
             </View>
@@ -297,7 +297,7 @@ export default function ProductDetailScreen() {
             style={[styles.cartBtn, { backgroundColor: colors.muted, borderColor: colors.primary }]}
             onPress={handleAddToCart}
           >
-            <Ionicons name="bag-add-outline" size={19} color={colors.primary} />
+            <SvgIcon name="bag-add-outline" size={19} color={colors.primary} />
             <Text style={[styles.cartBtnText, { color: colors.primary }]}>
               {inCart ? 'Add More' : 'Add to Cart'}
             </Text>
@@ -306,7 +306,7 @@ export default function ProductDetailScreen() {
             style={[styles.buyBtn, { backgroundColor: colors.primary }]}
             onPress={handleBuyNow}
           >
-            <Ionicons name="flash" size={19} color="#fff" />
+            <SvgIcon name="flash" size={19} color="#fff" />
             <Text style={[styles.buyBtnText, { color: '#fff' }]}>Buy Now</Text>
           </TouchableOpacity>
         </View>

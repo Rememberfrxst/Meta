@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Animated, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useLocalSearchParams, router } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Ionicons } from '@expo/vector-icons';
+import SvgIcon from '@/components/SvgIcon';
 import { useColors } from '@/hooks/useColors';
 import { useCart } from '@/context/CartContext';
 
@@ -31,7 +31,7 @@ export default function CheckoutSuccessScreen() {
       <Animated.View style={[styles.iconWrap, { transform: [{ scale }] }]}>
         <View style={[styles.iconBg, { backgroundColor: colors.success + '20' }]}>
           <View style={[styles.iconInner, { backgroundColor: colors.success }]}>
-            <Ionicons name="checkmark" size={52} color="#fff" />
+            <SvgIcon name="checkmark" size={52} color="#fff" />
           </View>
         </View>
       </Animated.View>
@@ -70,7 +70,7 @@ export default function CheckoutSuccessScreen() {
 
         {/* Free delivery badge */}
         <View style={[styles.deliveryBanner, { backgroundColor: colors.success + '15', borderColor: colors.success }]}>
-          <Ionicons name="bicycle" size={20} color={colors.success} />
+          <SvgIcon name="bicycle" size={20} color={colors.success} />
           <Text style={[styles.deliveryText, { color: colors.success }]}>Your order is on its way soon!</Text>
         </View>
 
@@ -79,7 +79,7 @@ export default function CheckoutSuccessScreen() {
           style={[styles.trackBtn, { backgroundColor: colors.primary }]}
           onPress={() => order ? router.replace(`/order/${order.id}`) : router.replace('/')}
         >
-          <Ionicons name="navigate" size={18} color={colors.primaryForeground} />
+          <SvgIcon name="navigate" size={18} color={colors.primaryForeground} />
           <Text style={[styles.trackBtnText, { color: colors.primaryForeground }]}>Track Order</Text>
         </TouchableOpacity>
         <TouchableOpacity

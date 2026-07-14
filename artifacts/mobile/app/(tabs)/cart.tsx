@@ -3,7 +3,7 @@ import { Alert, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpac
 import { router } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Ionicons } from '@expo/vector-icons';
+import SvgIcon from '@/components/SvgIcon';
 import * as Haptics from 'expo-haptics';
 import { useColors } from '@/hooks/useColors';
 import { useCart } from '@/context/CartContext';
@@ -34,7 +34,7 @@ export default function CartScreen() {
         </View>
         <View style={styles.emptyContent}>
           <View style={[styles.emptyIcon, { backgroundColor: colors.muted }]}>
-            <Ionicons name="bag-outline" size={48} color={colors.mutedForeground} />
+            <SvgIcon name="bag-outline" size={48} color={colors.mutedForeground} />
           </View>
           <Text style={[styles.emptyTitle, { color: colors.foreground }]}>Your cart is empty</Text>
           <Text style={[styles.emptySubtitle, { color: colors.mutedForeground }]}>Add items to start shopping</Text>
@@ -69,14 +69,14 @@ export default function CartScreen() {
                   </View>
                   <View style={styles.qtyRow}>
                     <TouchableOpacity style={[styles.qtyBtn, { backgroundColor: colors.muted }]} onPress={() => { updateQuantity(item.product.id, item.quantity - 1); Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); }}>
-                      <Ionicons name="remove" size={16} color={colors.foreground} />
+                      <SvgIcon name="remove" size={16} color={colors.foreground} />
                     </TouchableOpacity>
                     <Text style={[styles.qtyText, { color: colors.foreground }]}>{item.quantity}</Text>
                     <TouchableOpacity style={[styles.qtyBtn, { backgroundColor: colors.muted }]} onPress={() => { updateQuantity(item.product.id, item.quantity + 1); Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); }}>
-                      <Ionicons name="add" size={16} color={colors.foreground} />
+                      <SvgIcon name="add" size={16} color={colors.foreground} />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.removeBtn} onPress={() => { removeItem(item.product.id); Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium); }}>
-                      <Ionicons name="trash-outline" size={18} color={colors.destructive} />
+                      <SvgIcon name="trash-outline" size={18} color={colors.destructive} />
                     </TouchableOpacity>
                   </View>
                 </View>
@@ -105,7 +105,7 @@ export default function CartScreen() {
           {coupon ? (
             <View style={styles.activeCoupon}>
               <Text style={[styles.activeCouponText, { color: colors.success }]}>Coupon "{coupon}" applied</Text>
-              <TouchableOpacity onPress={removeCoupon}><Ionicons name="close-circle" size={18} color={colors.mutedForeground} /></TouchableOpacity>
+              <TouchableOpacity onPress={removeCoupon}><SvgIcon name="close-circle" size={18} color={colors.mutedForeground} /></TouchableOpacity>
             </View>
           ) : null}
           <Text style={[styles.couponHint, { color: colors.mutedForeground }]}>Try: GRIPER10, FIRST20, SAVE15, NEWUSER</Text>
@@ -146,7 +146,7 @@ export default function CartScreen() {
         </View>
         <TouchableOpacity style={[styles.checkoutBtn, { backgroundColor: colors.primary }]} onPress={() => router.push('/checkout')}>
           <Text style={[styles.checkoutText, { color: colors.primaryForeground }]}>Proceed to Checkout</Text>
-          <Ionicons name="arrow-forward" size={18} color={colors.primaryForeground} />
+          <SvgIcon name="arrow-forward" size={18} color={colors.primaryForeground} />
         </TouchableOpacity>
       </View>
     </View>

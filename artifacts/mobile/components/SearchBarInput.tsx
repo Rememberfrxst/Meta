@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import SvgIcon from '@/components/SvgIcon';
 import { useColors } from '@/hooks/useColors';
 
 interface Props {
@@ -17,7 +17,7 @@ export default function SearchBarInput({ value, onChangeText, onSubmit, onClear,
   const colors = useColors();
   return (
     <View style={[styles.wrap, { backgroundColor: colors.input, borderColor: colors.border }]}>
-      <Ionicons name="search" size={18} color={colors.mutedForeground} />
+      <SvgIcon name="search" size={18} color={colors.mutedForeground} />
       <TextInput
         value={value}
         onChangeText={onChangeText}
@@ -33,7 +33,7 @@ export default function SearchBarInput({ value, onChangeText, onSubmit, onClear,
       />
       {value.length > 0 && onClear && (
         <TouchableOpacity onPress={onClear}>
-          <Ionicons name="close-circle" size={18} color={colors.mutedForeground} />
+          <SvgIcon name="close-circle" size={18} color={colors.mutedForeground} />
         </TouchableOpacity>
       )}
     </View>

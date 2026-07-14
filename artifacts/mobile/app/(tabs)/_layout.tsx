@@ -7,7 +7,7 @@ import { Tabs } from 'expo-router';
 import { Icon, Label, NativeTabs } from 'expo-router/unstable-native-tabs';
 import { useCart } from '@/context/CartContext';
 import { useTheme } from '@/context/ThemeContext';
-import { Ionicons } from '@expo/vector-icons';
+import SvgIcon from '@/components/SvgIcon';
 import { HomeIconFilled, HomeIconOutline } from '@/components/TabIcons';
 
 // NativeTabs + SF Symbols are iOS-only — never render on Android/web
@@ -92,7 +92,7 @@ function ClassicTabLayout() {
         options={{
           title: 'Search',
           tabBarIcon: ({ color, focused, size }) => (
-            <Ionicons name={focused ? 'search' : 'search-outline'} size={size ?? 23} color={color} />
+            <SvgIcon name={focused ? 'search' : 'search-outline'} size={size ?? 23} color={color} />
           ),
         }}
       />
@@ -108,7 +108,7 @@ function ClassicTabLayout() {
             fontSize: 10,
           },
           tabBarIcon: ({ color, focused, size }) => (
-            <Ionicons name={focused ? 'bag' : 'bag-outline'} size={size ?? 23} color={color} />
+            <SvgIcon name={focused ? 'bag' : 'bag-outline'} size={size ?? 23} color={color} />
           ),
         }}
       />
@@ -118,7 +118,7 @@ function ClassicTabLayout() {
         options={{
           title: 'Orders',
           tabBarIcon: ({ color, focused, size }) => (
-            <Ionicons name={focused ? 'receipt' : 'receipt-outline'} size={size ?? 23} color={color} />
+            <SvgIcon name={focused ? 'receipt' : 'receipt-outline'} size={size ?? 23} color={color} />
           ),
         }}
       />
@@ -128,7 +128,7 @@ function ClassicTabLayout() {
         options={{
           title: 'Me',
           tabBarIcon: ({ color, focused, size }) => (
-            <Ionicons name={focused ? 'person-circle' : 'person-circle-outline'} size={size ?? 23} color={color} />
+            <SvgIcon name={focused ? 'person-circle' : 'person-circle-outline'} size={size ?? 23} color={color} />
           ),
         }}
       />
