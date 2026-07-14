@@ -1,0 +1,196 @@
+import React from 'react';
+import { Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { router } from 'expo-router';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Ionicons } from '@expo/vector-icons';
+import { useColors } from '@/hooks/useColors';
+import { useAuth } from '@/context/AuthContext';
+import { formatPrice, SELLER_PRODUCTS } from '@/constants/data';
+
+const totalRevenue = SELLER_PRODUCTS.reduce((s, p) => s + p.revenue, 0);
+const totalSold = SELLER_PRODUCTS.reduce((s, p) => s + p.sold, 0);
+
+const STATS = [
+  { icon: 'trending-up', label: 'Revenue', value: formatPrice(totalRevenue), color: '#22C55E' },
+  { icon: 'bag-handle', label: 'Total Sold', value: `${totalSold}`, color: '#3B82F6' },
+  { icon: 'cube-outline', label: 'Products', value: `${SELLER_PRODUCTS.length}`, color: '#7C3AED' },
+  { icon: 'star', label: 'Avg Rating', value: '4.5', color: '#F59E0B' },
+];
+
+export default function SellerDashboardScreen() {
+  const colors = useColors();
+  const insets = useSafeAreaInsets();
+  const { user, becomeSeller } = useAuth();
+  const isWeb = Platform.OS === 'web';
+
+  if (!user) {
+    return (
+      <View style={[styles.authPrompt, { backgroundColor: colors.background }]}>
+        <Ionicons name="storefront-outline" size={56} color={colors.mutedForeground} />
+        <Text style={[styles.authTitle, { color: colors.foreground }]}>Sign In to Access Seller Hub</Text>
+        <TouchableOpacity style={[styles.authBtn, { backgroundColor: colors.primary }]} onPress={() => router.push('/auth/login')}>
+          <Text style={[styles.authBtnText, { color: colors.primaryForeground }]}>Sign In</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
+  if (!user.isSeller) {
+    return (
+      <ScrollView style={[styles.container, { backgroundColor: colors.background }]} contentContainerStyle={{ flexGrow: 1 }}>
+        <LinearGradient colors={['#7C3AED', '#4F46E5']} style={styles.becomeHero}>
+          <Ionicons name="storefront" size={60} color="#fff" />
+          <Text style={styles.becomeTitle}>Start Selling on Griper</Text>
+          <Text style={styles.becomeSubtitle}>Reach millions of customers across India and globally</Text>
+        </LinearGradient>
+
+        <View style={styles.features}>
+          {[
+            { icon: 'flash', title: 'Easy Setup', desc: 'List your products in minutes' },
+            { icon: 'trending-up', title: 'Grow Sales', desc: 'Access millions of buyers' },
+            { icon: 'shield-checkmark', title: 'Secure Payments', desc: 'Fast & reliable payment settlement' },
+            { icon: 'headset', title: '24/7 Support', desc: 'Dedicated seller support team' },
+          ].map(f => (
+            <View key={f.title} style={[styles.featureRow, { borderBottomColor: colors.border }]}>
+              <View style={[styles.featureIcon, { backgroundColor: colors.primary + '18' }]}>
+                <Ionicons name={f.icon as any} size={22} color={colors.primary} />
+              </View>
+              <View>
+                <Text style={[styles.featureTitle, { color: colors.foreground }]}>{f.title}</Text>
+                <Text style={[styles.featureDesc, { color: colors.mutedForeground }]}>{f.desc}</Text>
+              </View>
+            </View>
+          ))}
+        </View>
+
+        <View style={styles.becomeActions}>
+          <TouchableOpacity
+            style={[styles.becomeBtn, { backgroundColor: colors.primary }]}
+            onPress={() => { becomeSeller(); }}
+          >
+            <Ionicons name="storefront" size={20} color={colors.primaryForeground} />
+            <Text style={[styles.becomeBtnText, { color: colors.primaryForeground }]}>Become a Seller</Text>
+          </TouchableOpacity>
+          <Text style={[styles.becomeDisclaimer, { color: colors.mutedForeground }]}>
+            Free to register. No monthly fees.
+          </Text>
+        </View>
+      </ScrollView>
+    );
+  }
+
+  return (
+    <ScrollView style={[styles.container, { backgroundColor: colors.background }]} showsVerticalScrollIndicator={false}>
+      {/* Seller greeting */}
+      <LinearGradient colors={['#7C3AED', '#4F46E5']} style={styles.sellerHeader}>
+        <View style={styles.sellerAvatar}>
+          <Text style={styles.sellerAvatarText}>{user.name.charAt(0)}</Text>
+        </View>
+        <View>
+          <Text style={styles.sellerGreeting}>Hello, {user.name.split(' ')[0]}</Text>
+          <Text style={styles.sellerBadge}>Verified Seller</Text>
+        </View>
+        <TouchableOpacity style={styles.addProductBtn}>
+          <Ionicons name="add-circle" size={22} color="#fff" />
+          <Text style={styles.addProductText}>Add Product</Text>
+        </TouchableOpacity>
+      </LinearGradient>
+
+      {/* Stats */}
+      <View style={styles.statsGrid}>
+        {STATS.map(stat => (
+          <View key={stat.label} style={[styles.statCard, { backgroundColor: colors.card }]}>
+            <View style={[styles.statIcon, { backgroundColor: stat.color + '20' }]}>
+              <Ionicons name={stat.icon as any} size={22} color={stat.color} />
+            </View>
+            <Text style={[styles.statValue, { color: colors.foreground }]}>{stat.value}</Text>
+            <Text style={[styles.statLabel, { color: colors.mutedForeground }]}>{stat.label}</Text>
+          </View>
+        ))}
+      </View>
+
+      {/* Products */}
+      <View style={[styles.section, { backgroundColor: colors.card }]}>
+        <View style={styles.sectionHead}>
+          <Text style={[styles.sectionTitle, { color: colors.foreground }]}>My Products</Text>
+          <TouchableOpacity>
+            <Text style={[styles.seeAll, { color: colors.primary }]}>See All</Text>
+          </TouchableOpacity>
+        </View>
+        {SELLER_PRODUCTS.map(product => (
+          <View key={product.id} style={[styles.productRow, { borderBottomColor: colors.border }]}>
+            <LinearGradient colors={product.gradient as string[]} style={styles.productImg} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} />
+            <View style={styles.productInfo}>
+              <Text style={[styles.productName, { color: colors.foreground }]} numberOfLines={1}>{product.name}</Text>
+              <View style={styles.productMeta}>
+                <View style={[styles.stockBadge, { backgroundColor: product.stock > 10 ? colors.success + '20' : product.stock > 0 ? colors.warning + '20' : colors.destructive + '20' }]}>
+                  <Text style={[styles.stockText, { color: product.stock > 10 ? colors.success : product.stock > 0 ? colors.warning : colors.destructive }]}>
+                    {product.stock > 0 ? `${product.stock} in stock` : 'Out of stock'}
+                  </Text>
+                </View>
+                <Text style={[styles.soldText, { color: colors.mutedForeground }]}>{product.sold} sold</Text>
+              </View>
+            </View>
+            <View style={styles.productRevenue}>
+              <Text style={[styles.revenueValue, { color: colors.foreground }]}>{formatPrice(product.revenue)}</Text>
+              <Text style={[styles.revenueLabel, { color: colors.mutedForeground }]}>Revenue</Text>
+            </View>
+            <TouchableOpacity>
+              <Ionicons name="ellipsis-vertical" size={18} color={colors.mutedForeground} />
+            </TouchableOpacity>
+          </View>
+        ))}
+      </View>
+
+      <View style={{ height: isWeb ? 100 : 100 }} />
+    </ScrollView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: { flex: 1 },
+  authPrompt: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 16 },
+  authTitle: { fontSize: 18, fontFamily: 'Inter_600SemiBold', textAlign: 'center' },
+  authBtn: { paddingHorizontal: 32, paddingVertical: 14, borderRadius: 12, marginTop: 8 },
+  authBtnText: { fontSize: 16, fontFamily: 'Inter_600SemiBold' },
+  becomeHero: { padding: 32, alignItems: 'center', gap: 12 },
+  becomeTitle: { fontSize: 22, fontFamily: 'Inter_700Bold', color: '#fff', textAlign: 'center' },
+  becomeSubtitle: { fontSize: 14, fontFamily: 'Inter_400Regular', color: 'rgba(255,255,255,0.85)', textAlign: 'center' },
+  features: { padding: 16 },
+  featureRow: { flexDirection: 'row', alignItems: 'center', gap: 14, paddingVertical: 14, borderBottomWidth: 1 },
+  featureIcon: { width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
+  featureTitle: { fontSize: 15, fontFamily: 'Inter_600SemiBold' },
+  featureDesc: { fontSize: 13, fontFamily: 'Inter_400Regular', marginTop: 2 },
+  becomeActions: { padding: 24, alignItems: 'center', gap: 10 },
+  becomeBtn: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingHorizontal: 36, paddingVertical: 16, borderRadius: 14 },
+  becomeBtnText: { fontSize: 16, fontFamily: 'Inter_600SemiBold' },
+  becomeDisclaimer: { fontSize: 12, fontFamily: 'Inter_400Regular' },
+  sellerHeader: { flexDirection: 'row', alignItems: 'center', gap: 12, padding: 20 },
+  sellerAvatar: { width: 48, height: 48, borderRadius: 24, backgroundColor: 'rgba(255,255,255,0.25)', alignItems: 'center', justifyContent: 'center' },
+  sellerAvatarText: { fontSize: 22, fontFamily: 'Inter_700Bold', color: '#fff' },
+  sellerGreeting: { fontSize: 17, fontFamily: 'Inter_700Bold', color: '#fff' },
+  sellerBadge: { fontSize: 11, fontFamily: 'Inter_500Medium', color: 'rgba(255,255,255,0.85)', marginTop: 2 },
+  addProductBtn: { marginLeft: 'auto', flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: 'rgba(255,255,255,0.2)', paddingHorizontal: 12, paddingVertical: 8, borderRadius: 10 },
+  addProductText: { fontSize: 12, fontFamily: 'Inter_600SemiBold', color: '#fff' },
+  statsGrid: { flexDirection: 'row', flexWrap: 'wrap', padding: 12, gap: 10 },
+  statCard: { width: '47%', padding: 14, borderRadius: 16, gap: 8, alignItems: 'flex-start' },
+  statIcon: { width: 40, height: 40, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
+  statValue: { fontSize: 20, fontFamily: 'Inter_700Bold' },
+  statLabel: { fontSize: 12, fontFamily: 'Inter_400Regular' },
+  section: { margin: 0 },
+  sectionHead: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 16, paddingBottom: 8 },
+  sectionTitle: { fontSize: 16, fontFamily: 'Inter_700Bold' },
+  seeAll: { fontSize: 13, fontFamily: 'Inter_600SemiBold' },
+  productRow: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 16, paddingVertical: 14, borderBottomWidth: 1 },
+  productImg: { width: 52, height: 52, borderRadius: 12 },
+  productInfo: { flex: 1 },
+  productName: { fontSize: 14, fontFamily: 'Inter_500Medium' },
+  productMeta: { flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 6 },
+  stockBadge: { paddingHorizontal: 8, paddingVertical: 3, borderRadius: 6 },
+  stockText: { fontSize: 11, fontFamily: 'Inter_600SemiBold' },
+  soldText: { fontSize: 11, fontFamily: 'Inter_400Regular' },
+  productRevenue: { alignItems: 'flex-end' },
+  revenueValue: { fontSize: 14, fontFamily: 'Inter_700Bold' },
+  revenueLabel: { fontSize: 10, fontFamily: 'Inter_400Regular' },
+});

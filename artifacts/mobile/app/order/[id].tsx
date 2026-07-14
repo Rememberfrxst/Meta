@@ -1,0 +1,208 @@
+import React from 'react';
+import { Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useLocalSearchParams, router } from 'expo-router';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Ionicons } from '@expo/vector-icons';
+import { useColors } from '@/hooks/useColors';
+import { useCart } from '@/context/CartContext';
+import { formatPrice, Order } from '@/constants/data';
+
+const TIMELINE_STEPS: { status: Order['status']; label: string; icon: string }[] = [
+  { status: 'pending', label: 'Order Placed', icon: 'checkmark-circle' },
+  { status: 'confirmed', label: 'Confirmed', icon: 'shield-checkmark' },
+  { status: 'shipped', label: 'Shipped', icon: 'cube' },
+  { status: 'out_for_delivery', label: 'Out for Delivery', icon: 'bicycle' },
+  { status: 'delivered', label: 'Delivered', icon: 'home' },
+];
+
+const STATUS_ORDER = ['pending', 'confirmed', 'shipped', 'out_for_delivery', 'delivered'];
+
+export default function OrderDetailScreen() {
+  const colors = useColors();
+  const insets = useSafeAreaInsets();
+  const { id } = useLocalSearchParams<{ id: string }>();
+  const { orders } = useCart();
+  const isWeb = Platform.OS === 'web';
+
+  const order = orders.find(o => o.id === id);
+
+  if (!order) {
+    return (
+      <View style={[styles.notFound, { backgroundColor: colors.background }]}>
+        <Ionicons name="bag-outline" size={48} color={colors.mutedForeground} />
+        <Text style={[styles.notFoundText, { color: colors.foreground }]}>Order not found</Text>
+        <TouchableOpacity onPress={() => router.back()}>
+          <Text style={[styles.link, { color: colors.primary }]}>Go Back</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
+  const currentStep = order.status === 'cancelled' ? -1 : STATUS_ORDER.indexOf(order.status);
+
+  return (
+    <ScrollView style={[styles.container, { backgroundColor: colors.background }]} showsVerticalScrollIndicator={false}>
+      {/* Status Banner */}
+      <View style={[styles.statusBanner, {
+        backgroundColor: order.status === 'delivered' ? colors.success + '15' :
+          order.status === 'cancelled' ? colors.destructive + '15' : colors.primary + '15'
+      }]}>
+        <Ionicons
+          name={order.status === 'delivered' ? 'checkmark-done-circle' : order.status === 'cancelled' ? 'close-circle' : 'time'}
+          size={28}
+          color={order.status === 'delivered' ? colors.success : order.status === 'cancelled' ? colors.destructive : colors.primary}
+        />
+        <View>
+          <Text style={[styles.statusTitle, {
+            color: order.status === 'delivered' ? colors.success : order.status === 'cancelled' ? colors.destructive : colors.primary
+          }]}>
+            {order.status === 'pending' ? 'Order Placed' :
+              order.status === 'confirmed' ? 'Order Confirmed' :
+                order.status === 'shipped' ? 'Shipment in Transit' :
+                  order.status === 'out_for_delivery' ? 'Out for Delivery' :
+                    order.status === 'delivered' ? 'Delivered' : 'Cancelled'}
+          </Text>
+          {order.status !== 'delivered' && order.status !== 'cancelled' && (
+            <Text style={[styles.statusSub, { color: colors.mutedForeground }]}>
+              Est. Delivery: {order.estimatedDelivery}
+            </Text>
+          )}
+        </View>
+      </View>
+
+      {/* Order Info */}
+      <View style={[styles.section, { backgroundColor: colors.card }]}>
+        <View style={styles.infoRow}>
+          <Text style={[styles.infoLabel, { color: colors.mutedForeground }]}>Order ID</Text>
+          <Text style={[styles.infoVal, { color: colors.foreground }]}>#{order.id}</Text>
+        </View>
+        <View style={styles.infoRow}>
+          <Text style={[styles.infoLabel, { color: colors.mutedForeground }]}>Date</Text>
+          <Text style={[styles.infoVal, { color: colors.foreground }]}>
+            {new Date(order.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}
+          </Text>
+        </View>
+        <View style={styles.infoRow}>
+          <Text style={[styles.infoLabel, { color: colors.mutedForeground }]}>Payment</Text>
+          <Text style={[styles.infoVal, { color: colors.foreground }]}>
+            {order.paymentMethod === 'cod' ? 'Cash on Delivery' : order.paymentMethod === 'upi' ? 'UPI' : 'Razorpay'}
+          </Text>
+        </View>
+      </View>
+
+      {/* Timeline */}
+      {order.status !== 'cancelled' && (
+        <View style={[styles.section, { backgroundColor: colors.card, marginTop: 8 }]}>
+          <Text style={[styles.sectionTitle, { color: colors.foreground }]}>Order Tracking</Text>
+          {TIMELINE_STEPS.map((step, i) => {
+            const done = i <= currentStep;
+            const active = i === currentStep;
+            return (
+              <View key={step.status} style={styles.timelineRow}>
+                <View style={styles.timelineLeft}>
+                  <View style={[styles.timelineDot, {
+                    backgroundColor: done ? colors.success : colors.muted,
+                    borderColor: done ? colors.success : colors.border,
+                  }]}>
+                    {done && <Ionicons name="checkmark" size={12} color="#fff" />}
+                    {!done && <View style={[styles.dotEmpty, { backgroundColor: colors.border }]} />}
+                  </View>
+                  {i < TIMELINE_STEPS.length - 1 && (
+                    <View style={[styles.timelineLine, { backgroundColor: i < currentStep ? colors.success : colors.border }]} />
+                  )}
+                </View>
+                <View style={styles.timelineContent}>
+                  <View style={[styles.timelineIconWrap, { backgroundColor: done ? colors.success + '20' : colors.muted }]}>
+                    <Ionicons name={step.icon as any} size={18} color={done ? colors.success : colors.mutedForeground} />
+                  </View>
+                  <View style={{ flex: 1 }}>
+                    <Text style={[styles.timelineLabel, { color: done ? colors.foreground : colors.mutedForeground, fontFamily: active ? 'Inter_700Bold' : 'Inter_500Medium' }]}>
+                      {step.label}
+                    </Text>
+                    {done && (
+                      <Text style={[styles.timelineDate, { color: colors.mutedForeground }]}>
+                        {i === 0 ? new Date(order.date).toLocaleDateString('en-IN') : 'Completed'}
+                      </Text>
+                    )}
+                  </View>
+                </View>
+              </View>
+            );
+          })}
+        </View>
+      )}
+
+      {/* Items */}
+      <View style={[styles.section, { backgroundColor: colors.card, marginTop: 8 }]}>
+        <Text style={[styles.sectionTitle, { color: colors.foreground }]}>Items ({order.items.length})</Text>
+        {order.items.map((item, i) => (
+          <View key={i} style={[styles.itemRow, { borderBottomColor: colors.border }]}>
+            <LinearGradient colors={item.gradient as string[]} style={styles.itemImg} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} />
+            <View style={styles.itemInfo}>
+              <Text style={[styles.itemName, { color: colors.foreground }]} numberOfLines={2}>{item.name}</Text>
+              <Text style={[styles.itemQty, { color: colors.mutedForeground }]}>Qty: {item.quantity}</Text>
+              <Text style={[styles.itemPrice, { color: colors.foreground }]}>{formatPrice(item.price * item.quantity)}</Text>
+            </View>
+          </View>
+        ))}
+      </View>
+
+      {/* Delivery Address */}
+      <View style={[styles.section, { backgroundColor: colors.card, marginTop: 8 }]}>
+        <Text style={[styles.sectionTitle, { color: colors.foreground }]}>Delivery Address</Text>
+        <Text style={[styles.addrName, { color: colors.foreground }]}>{order.address.name}</Text>
+        <Text style={[styles.addrLine, { color: colors.mutedForeground }]}>{order.address.line1}{order.address.line2 ? `, ${order.address.line2}` : ''}</Text>
+        <Text style={[styles.addrLine, { color: colors.mutedForeground }]}>{order.address.city}, {order.address.state} - {order.address.pincode}</Text>
+        <Text style={[styles.addrPhone, { color: colors.mutedForeground }]}>{order.address.phone}</Text>
+      </View>
+
+      {/* Summary */}
+      <View style={[styles.section, { backgroundColor: colors.card, marginTop: 8 }]}>
+        <Text style={[styles.sectionTitle, { color: colors.foreground }]}>Order Summary</Text>
+        <View style={styles.summaryRow}>
+          <Text style={[styles.summaryKey, { color: colors.mutedForeground }]}>Total Amount</Text>
+          <Text style={[styles.summaryVal, { color: colors.foreground }]}>{formatPrice(order.total)}</Text>
+        </View>
+      </View>
+
+      <View style={{ height: isWeb ? 100 : 100 }} />
+    </ScrollView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: { flex: 1 },
+  notFound: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 16 },
+  notFoundText: { fontSize: 18, fontFamily: 'Inter_500Medium' },
+  link: { fontSize: 15, fontFamily: 'Inter_600SemiBold' },
+  statusBanner: { flexDirection: 'row', alignItems: 'center', gap: 14, padding: 20 },
+  statusTitle: { fontSize: 17, fontFamily: 'Inter_700Bold' },
+  statusSub: { fontSize: 13, fontFamily: 'Inter_400Regular', marginTop: 2 },
+  section: { padding: 16, gap: 10 },
+  sectionTitle: { fontSize: 16, fontFamily: 'Inter_700Bold', marginBottom: 6 },
+  infoRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+  infoLabel: { fontSize: 13, fontFamily: 'Inter_400Regular' },
+  infoVal: { fontSize: 13, fontFamily: 'Inter_600SemiBold' },
+  timelineRow: { flexDirection: 'row', gap: 12, minHeight: 60 },
+  timelineLeft: { width: 24, alignItems: 'center' },
+  timelineDot: { width: 24, height: 24, borderRadius: 12, borderWidth: 2, alignItems: 'center', justifyContent: 'center' },
+  dotEmpty: { width: 8, height: 8, borderRadius: 4 },
+  timelineLine: { flex: 1, width: 2, marginVertical: 4 },
+  timelineContent: { flex: 1, flexDirection: 'row', alignItems: 'center', gap: 12, paddingBottom: 16 },
+  timelineIconWrap: { width: 36, height: 36, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
+  timelineLabel: { fontSize: 14 },
+  timelineDate: { fontSize: 12, fontFamily: 'Inter_400Regular', marginTop: 2 },
+  itemRow: { flexDirection: 'row', gap: 12, paddingVertical: 12, borderBottomWidth: 1 },
+  itemImg: { width: 60, height: 60, borderRadius: 10 },
+  itemInfo: { flex: 1, gap: 4 },
+  itemName: { fontSize: 14, fontFamily: 'Inter_500Medium', lineHeight: 20 },
+  itemQty: { fontSize: 12, fontFamily: 'Inter_400Regular' },
+  itemPrice: { fontSize: 14, fontFamily: 'Inter_700Bold' },
+  addrName: { fontSize: 15, fontFamily: 'Inter_600SemiBold' },
+  addrLine: { fontSize: 13, fontFamily: 'Inter_400Regular' },
+  addrPhone: { fontSize: 13, fontFamily: 'Inter_500Medium', marginTop: 4 },
+  summaryRow: { flexDirection: 'row', justifyContent: 'space-between' },
+  summaryKey: { fontSize: 15, fontFamily: 'Inter_400Regular' },
+  summaryVal: { fontSize: 16, fontFamily: 'Inter_700Bold' },
+});
