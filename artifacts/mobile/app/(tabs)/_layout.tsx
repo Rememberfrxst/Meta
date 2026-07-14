@@ -12,14 +12,11 @@ import {
   HomeIconFilled,
   HomeIconOutline,
   ProfileIconFilled,
-  ProfileIconOutline,
-  CartIconFilledFA,
-  CartIconOutline,
-  OrdersIconFilledFA,
-  OrdersIconOutlineFA,
+  CartIconNew,
+  OrdersIconNew,
 } from '@/components/TabIcons';
 
-/* Animated Me icon — scales up with a spring when focused */
+/* Animated Me icon — always shows the filled icon, springs on focus */
 function AnimatedMeIcon({ focused, color, size }: { focused: boolean; color: string; size: number }) {
   const scale = useRef(new Animated.Value(focused ? 1.12 : 1)).current;
 
@@ -34,9 +31,7 @@ function AnimatedMeIcon({ focused, color, size }: { focused: boolean; color: str
 
   return (
     <Animated.View style={{ transform: [{ scale }] }}>
-      {focused
-        ? <ProfileIconFilled color={color} size={size} />
-        : <ProfileIconOutline color={color} size={size} />}
+      <ProfileIconFilled color={color} size={size} />
     </Animated.View>
   );
 }
@@ -138,10 +133,8 @@ function ClassicTabLayout() {
             fontFamily: 'GoogleSans_700Bold',
             fontSize: 10,
           },
-          tabBarIcon: ({ color, focused, size }) =>
-            focused
-              ? <CartIconFilledFA color={color} size={size ?? 23} />
-              : <CartIconOutline color={color} size={size ?? 23} />,
+          tabBarIcon: ({ color, size }) =>
+            <CartIconNew color={color} size={size ?? 23} />,
         }}
       />
 
@@ -149,10 +142,8 @@ function ClassicTabLayout() {
         name="orders"
         options={{
           title: 'Orders',
-          tabBarIcon: ({ color, focused, size }) =>
-            focused
-              ? <OrdersIconFilledFA color={color} size={size ?? 23} />
-              : <OrdersIconOutlineFA color={color} size={size ?? 23} />,
+          tabBarIcon: ({ color, size }) =>
+            <OrdersIconNew color={color} size={size ?? 23} />,
         }}
       />
 

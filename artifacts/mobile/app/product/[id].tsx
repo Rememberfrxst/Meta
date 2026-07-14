@@ -16,7 +16,7 @@ import RatingStars from '@/components/RatingStars';
 const { width: SCREEN_W } = Dimensions.get('window');
 const HERO_HEIGHT = SCREEN_W * 0.95;
 const SHEET_RADIUS = 28;
-const HERO_ICON_SIZE = 22;
+const HERO_ICON_SIZE = 24;
 
 /* Demo image variants — same product art, different gradient angle + icon,
    so the hero behaves like a real multi-photo swipe gallery. */
@@ -633,8 +633,8 @@ const styles = StyleSheet.create({
   backLink: { fontSize: 15, fontFamily: 'GoogleSans_600SemiBold' },
 
   /* Hero */
-  heroTopBar: { position: 'absolute', left: 14, right: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', zIndex: 10 },
-  heroActions: { flexDirection: 'row', gap: 10 },
+  heroTopBar: { position: 'absolute', left: 14, right: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', zIndex: 10 },
+  heroActions: { flexDirection: 'row', gap: 2 },
   heroBtn: { width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },
   heroCenter: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   heroBadge: { position: 'absolute', bottom: SHEET_RADIUS + 10, left: 14, paddingHorizontal: 10, paddingVertical: 4, borderRadius: 8 },
@@ -760,8 +760,8 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 12,
   },
-  cartBtn: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingVertical: 15, borderRadius: 14, borderWidth: 1.5 },
-  cartBtnText: { fontSize: 14, fontFamily: 'GoogleSans_600SemiBold' },
-  buyBtn: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingVertical: 15, borderRadius: 14 },
-  buyBtnText: { fontSize: 15, fontFamily: 'GoogleSans_700Bold' },
+  cartBtn: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 7, paddingVertical: 16, borderRadius: 16, borderWidth: 1.5 },
+  cartBtnText: { fontSize: 14.5, fontFamily: 'GoogleSans_700Bold', letterSpacing: 0.1 },
+  buyBtn: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingVertical: 16, borderRadius: 16 },
+  buyBtnText: { fontSize: 15, fontFamily: 'GoogleSans_700Bold', letterSpacing: 0.2 },
 });

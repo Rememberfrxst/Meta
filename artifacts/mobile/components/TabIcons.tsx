@@ -3,7 +3,7 @@
  * No font loading = no Japanese/Chinese glyph fallbacks on physical Android.
  */
 import React from 'react';
-import Svg, { Path, Circle, Rect } from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 
 interface Props {
   color: string;
@@ -61,64 +61,73 @@ export function SearchIconOutline({ color, size = 24 }: Props) {
   );
 }
 
-/* ─── Cart / Bag ────────────────────────────────────────────────────────── */
-export function CartIconFilled({ color, size = 24 }: Props) {
+/* ─── Cart / Bag — stroke icon (user-supplied) ──────────────────────────── */
+export function CartIconNew({ color, size = 24 }: Props) {
   return (
-    <Svg width={size} height={size} viewBox="0 0 24 24">
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
       <Path
-        fill={color}
-        d="M6 2a1 1 0 0 0 0 2h1.22l1.7 7.39A3 3 0 0 0 10 17h9a1 1 0 0 0 0-2h-9a1 1 0 0 1-.97-.76L8.73 13H18a2 2 0 0 0 1.94-1.5l1.5-6A2 2 0 0 0 19.5 3H7.28L6.8 2H6zm3.5 17.5a1.5 1.5 0 1 0 3 0 1.5 1.5 0 0 0-3 0zm7.5 0a1.5 1.5 0 1 0 3 0 1.5 1.5 0 0 0-3 0z"
-      />
-    </Svg>
-  );
-}
-
-export function CartIconOutline({ color, size = 24 }: Props) {
-  return (
-    <Svg width={size} height={size} viewBox="0 0 24 24">
-      <Path
-        fill="none"
+        d="M16.875 17.25H7.79719C7.44591 17.2499 7.10579 17.1266 6.83612 16.9015C6.56646 16.6764 6.38435 16.3637 6.32156 16.0181L3.93 2.86594C3.8986 2.69313 3.80755 2.53681 3.67272 2.42425C3.53789 2.31169 3.36783 2.25003 3.19219 2.25H1.5"
         stroke={color}
-        strokeWidth={1.8}
+        strokeWidth={1.4}
         strokeLinecap="round"
         strokeLinejoin="round"
-        d="M6 2H4M6 2l2 9m-2-9h13.5a1 1 0 0 1 .97 1.25l-1.5 6A2 2 0 0 1 17 11H8.5M8 18h9M9 21.5a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0zm7 0a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0z"
-      />
-    </Svg>
-  );
-}
-
-/* ─── Orders / Receipt ─────────────────────────────────────────────────── */
-export function OrdersIconFilled({ color, size = 24 }: Props) {
-  return (
-    <Svg width={size} height={size} viewBox="0 0 24 24">
-      <Path
-        fill={color}
-        d="M4 3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H4zm2 4h12v2H6V7zm0 4h12v2H6v-2zm0 4h8v2H6v-2z"
-      />
-    </Svg>
-  );
-}
-
-export function OrdersIconOutline({ color, size = 24 }: Props) {
-  return (
-    <Svg width={size} height={size} viewBox="0 0 24 24">
-      <Rect
-        x={3}
-        y={3}
-        width={18}
-        height={18}
-        rx={2}
-        fill="none"
-        stroke={color}
-        strokeWidth={1.8}
       />
       <Path
-        fill="none"
+        d="M7.875 21C8.91053 21 9.75 20.1605 9.75 19.125C9.75 18.0895 8.91053 17.25 7.875 17.25C6.83947 17.25 6 18.0895 6 19.125C6 20.1605 6.83947 21 7.875 21Z"
         stroke={color}
-        strokeWidth={1.8}
+        strokeWidth={1.4}
         strokeLinecap="round"
-        d="M7 8h10M7 12h10M7 16h6"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M16.875 21C17.9105 21 18.75 20.1605 18.75 19.125C18.75 18.0895 17.9105 17.25 16.875 17.25C15.8395 17.25 15 18.0895 15 19.125C15 20.1605 15.8395 21 16.875 21Z"
+        stroke={color}
+        strokeWidth={1.4}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M5.86406 13.5H17.6344C17.9857 13.4999 18.3258 13.3766 18.5954 13.1515C18.8651 12.9264 19.0472 12.6137 19.11 12.2681L20.25 6H4.5"
+        stroke={color}
+        strokeWidth={1.4}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
+/* ─── Orders — box/package stroke icon (user-supplied) ──────────────────── */
+export function OrdersIconNew({ color, size = 24 }: Props) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Path
+        d="M21 16.621V7.37727C20.9993 7.24374 20.9634 7.11277 20.8959 6.99755C20.8284 6.88234 20.7317 6.78695 20.6156 6.72102L12.3656 2.08039C12.2545 2.01621 12.1284 1.98242 12 1.98242C11.8716 1.98242 11.7455 2.01621 11.6344 2.08039L3.38437 6.72102C3.26827 6.78695 3.1716 6.88234 3.10411 6.99755C3.03663 7.11277 3.00072 7.24374 3 7.37727V16.621C3.00072 16.7545 3.03663 16.8855 3.10411 17.0007C3.1716 17.1159 3.26827 17.2113 3.38437 17.2773L11.6344 21.9179C11.7455 21.9821 11.8716 22.0159 12 22.0159C12.1284 22.0159 12.2545 21.9821 12.3656 21.9179L20.6156 17.2773C20.7317 17.2113 20.8284 17.1159 20.8959 17.0007C20.9634 16.8855 20.9993 16.7545 21 16.621V16.621Z"
+        stroke={color}
+        strokeWidth={1.4}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M16.5938 14.2959V9.4209L7.5 4.40527"
+        stroke={color}
+        strokeWidth={1.4}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M20.8973 6.99316L12.0848 11.9994L3.10352 6.99316"
+        stroke={color}
+        strokeWidth={1.4}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M12.0844 11.999L12 22.0115"
+        stroke={color}
+        strokeWidth={1.4}
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </Svg>
   );
@@ -149,38 +158,3 @@ export function ProfileIconOutline({ color, size = 24 }: Props) {
   );
 }
 
-/* ─── Cart / Bag — FA style ─────────────────────────────────────────────── */
-export function CartIconFilledFA({ color, size = 24 }: Props) {
-  return (
-    <Svg width={size} height={size} viewBox="0 0 640 640">
-      <Path
-        fill={color}
-        d="M211.2 32C196.8 32 184.5 42.1 181.4 56.2L160.5 160L64 160C46.3 160 32 174.3 32 192C32 192.5 32 193 32.1 193.5L73.2 501.7C76.9 530.9 101.8 552 131.3 552L508.7 552C538.2 552 563.1 530.9 566.8 501.7L607.9 193.5C608 193 608 192.5 608 192C608 174.3 593.7 160 576 160L479.5 160L458.6 56.2C455.5 42.1 443.2 32 428.8 32L211.2 32zM240.4 160L399.6 160L415.3 80L224.7 80L240.4 160zM224 288C224 262.3 244.3 241.6 270 240.1C271.3 240 272.7 240 274 240C301.4 240 323.9 261.5 323.9 288C323.9 314.5 302.4 336 276 336C249.5 336 228 314.5 228 288zM364 288C364 261.5 385.5 240 412 240C438.5 240 460 261.5 460 288C460 314.5 438.5 336 412 336C385.5 336 364 314.5 364 288z"
-      />
-    </Svg>
-  );
-}
-
-/* ─── Orders — FA package style ─────────────────────────────────────────── */
-export function OrdersIconFilledFA({ color, size = 24 }: Props) {
-  return (
-    <Svg width={size} height={size} viewBox="0 0 640 640">
-      <Path
-        fill={color}
-        d="M58.7 165.5L288 68.8L288 480L58.7 383.3C40.5 375.7 28.9 357.8 28.9 338.1L28.9 210.7C28.9 191 40.5 173.1 58.7 165.5zM340.3 68.8L581.3 165.5C599.5 173.1 611.1 191 611.1 210.7L611.1 338.1C611.1 357.8 599.5 375.7 581.3 383.3L352 480L352 68.8L340.3 68.8zM288 32L320 32L352 32L596 130.2C619.9 139.9 640 165 640 210.7L640 338.1C640 383.8 619.9 408.9 596 418.6L320 528L44 418.6C20.1 408.9 0 383.8 0 338.1L0 210.7C0 165 20.1 139.9 44 130.2L288 32zM224 176L224 256L416 256L416 176L368 176L368 224L272 224L272 176L224 176z"
-      />
-    </Svg>
-  );
-}
-
-export function OrdersIconOutlineFA({ color, size = 24 }: Props) {
-  return (
-    <Svg width={size} height={size} viewBox="0 0 640 640">
-      <Path
-        fill={color}
-        d="M58.7 165.5L288 68.8L288 480L58.7 383.3C40.5 375.7 28.9 357.8 28.9 338.1L28.9 210.7C28.9 191 40.5 173.1 58.7 165.5zM340.3 68.8L581.3 165.5C599.5 173.1 611.1 191 611.1 210.7L611.1 338.1C611.1 357.8 599.5 375.7 581.3 383.3L352 480L352 68.8L340.3 68.8zM288 32L320 32L352 32L596 130.2C619.9 139.9 640 165 640 210.7L640 338.1C640 383.8 619.9 408.9 596 418.6L320 528L44 418.6C20.1 408.9 0 383.8 0 338.1L0 210.7C0 165 20.1 139.9 44 130.2L288 32zM224 176L224 256L416 256L416 176L368 176L368 224L272 224L272 176L224 176z"
-        opacity={0.6}
-      />
-    </Svg>
-  );
-}
