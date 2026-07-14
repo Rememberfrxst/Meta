@@ -146,7 +146,7 @@ export default function ProductDetailScreen() {
             </Text>
             <Text style={[styles.sellerText, { color: colors.mutedForeground }]}>
               Sold by{' '}
-              <Text style={{ color: colors.primary, fontFamily: 'Inter_600SemiBold' }}>
+              <Text style={{ color: colors.primary, fontFamily: 'GoogleSans_600SemiBold' }}>
                 {product.seller}
               </Text>
             </Text>
@@ -318,17 +318,17 @@ export default function ProductDetailScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1 },
   notFound: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 14 },
-  notFoundText: { fontSize: 18, fontFamily: 'Inter_500Medium' },
-  backLink: { fontSize: 15, fontFamily: 'Inter_600SemiBold' },
+  notFoundText: { fontSize: 18, fontFamily: 'GoogleSans_500Medium' },
+  backLink: { fontSize: 15, fontFamily: 'GoogleSans_600SemiBold' },
 
   /* Hero */
   heroActions: { position: 'absolute', top: 14, right: 14, gap: 10 },
   heroBtn: { width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },
   heroCenter: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   heroBadge: { position: 'absolute', bottom: SHEET_RADIUS + 10, left: 14, paddingHorizontal: 10, paddingVertical: 4, borderRadius: 8 },
-  heroBadgeText: { fontSize: 13, fontFamily: 'Inter_700Bold' },
+  heroBadgeText: { fontSize: 13, fontFamily: 'GoogleSans_700Bold' },
   heroExpress: { position: 'absolute', bottom: SHEET_RADIUS + 10, right: 14, flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: 8, paddingVertical: 4, borderRadius: 8 },
-  heroExpressText: { fontSize: 10, fontFamily: 'Inter_700Bold', color: '#fff' },
+  heroExpressText: { fontSize: 10, fontFamily: 'GoogleSans_700Bold', color: '#fff' },
 
   /* Bottom sheet */
   sheet: {
@@ -345,64 +345,64 @@ const styles = StyleSheet.create({
   sheetPad: { paddingHorizontal: 20, paddingTop: 6, paddingBottom: 12, gap: 8 },
 
   /* Product info */
-  category: { fontSize: 11, fontFamily: 'Inter_700Bold', letterSpacing: 1.4 },
-  productName: { fontSize: 20, fontFamily: 'Inter_700Bold', lineHeight: 28 },
-  sellerText: { fontSize: 13, fontFamily: 'Inter_400Regular' },
+  category: { fontSize: 11, fontFamily: 'GoogleSans_700Bold', letterSpacing: 1.4 },
+  productName: { fontSize: 20, fontFamily: 'GoogleSans_700Bold', lineHeight: 28 },
+  sellerText: { fontSize: 13, fontFamily: 'GoogleSans_400Regular' },
   ratingRow: { flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 2 },
-  ratingNum: { fontSize: 14, fontFamily: 'Inter_600SemiBold' },
-  reviewCount: { fontSize: 12, fontFamily: 'Inter_400Regular' },
+  ratingNum: { fontSize: 14, fontFamily: 'GoogleSans_600SemiBold' },
+  reviewCount: { fontSize: 12, fontFamily: 'GoogleSans_400Regular' },
 
   /* Price strip */
   priceStrip: { paddingHorizontal: 20, paddingVertical: 14, gap: 4 },
   priceRow: { flexDirection: 'row', alignItems: 'center', gap: 10, flexWrap: 'wrap' },
-  price: { fontSize: 26, fontFamily: 'Inter_700Bold' },
-  originalPrice: { fontSize: 16, fontFamily: 'Inter_400Regular', textDecorationLine: 'line-through' },
+  price: { fontSize: 26, fontFamily: 'GoogleSans_700Bold' },
+  originalPrice: { fontSize: 16, fontFamily: 'GoogleSans_400Regular', textDecorationLine: 'line-through' },
   discountPill: { paddingHorizontal: 8, paddingVertical: 3, borderRadius: 20 },
-  discountPillText: { fontSize: 12, fontFamily: 'Inter_700Bold' },
-  savingText: { fontSize: 13, fontFamily: 'Inter_600SemiBold' },
+  discountPillText: { fontSize: 12, fontFamily: 'GoogleSans_700Bold' },
+  savingText: { fontSize: 13, fontFamily: 'GoogleSans_600SemiBold' },
 
   /* Banners */
   infoBanner: { flexDirection: 'row', alignItems: 'center', gap: 7, padding: 10, borderRadius: 10, borderWidth: 1 },
-  infoBannerText: { fontSize: 13, fontFamily: 'Inter_600SemiBold' },
+  infoBannerText: { fontSize: 13, fontFamily: 'GoogleSans_600SemiBold' },
 
   /* Qty */
   qtyRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  qtyLabel: { fontSize: 15, fontFamily: 'Inter_600SemiBold' },
+  qtyLabel: { fontSize: 15, fontFamily: 'GoogleSans_600SemiBold' },
   qtyControls: { flexDirection: 'row', alignItems: 'center', gap: 16 },
   qtyBtn: { width: 36, height: 36, borderRadius: 10, borderWidth: 1, alignItems: 'center', justifyContent: 'center' },
-  qtyNum: { fontSize: 18, fontFamily: 'Inter_700Bold', minWidth: 28, textAlign: 'center' },
+  qtyNum: { fontSize: 18, fontFamily: 'GoogleSans_700Bold', minWidth: 28, textAlign: 'center' },
 
   /* Tabs */
   tabBar: { flexDirection: 'row', borderBottomWidth: 1, borderTopWidth: 1 },
   tabBtn: { flex: 1, paddingVertical: 14, alignItems: 'center', borderBottomWidth: 0 },
-  tabText: { fontSize: 14, fontFamily: 'Inter_600SemiBold' },
+  tabText: { fontSize: 14, fontFamily: 'GoogleSans_600SemiBold' },
   tabContent: { padding: 20 },
 
   /* Description */
-  description: { fontSize: 15, fontFamily: 'Inter_400Regular', lineHeight: 25 },
+  description: { fontSize: 15, fontFamily: 'GoogleSans_400Regular', lineHeight: 25 },
 
   /* Specs */
   specRow: { flexDirection: 'row', paddingVertical: 12, paddingHorizontal: 4, borderBottomWidth: 1 },
-  specKey: { flex: 1.1, fontSize: 13, fontFamily: 'Inter_400Regular' },
-  specVal: { flex: 1.5, fontSize: 13, fontFamily: 'Inter_600SemiBold', textAlign: 'right' },
+  specKey: { flex: 1.1, fontSize: 13, fontFamily: 'GoogleSans_400Regular' },
+  specVal: { flex: 1.5, fontSize: 13, fontFamily: 'GoogleSans_600SemiBold', textAlign: 'right' },
 
   /* Reviews */
   reviewsList: { gap: 16 },
   ratingSummary: { borderRadius: 14, padding: 20, alignItems: 'center', gap: 8 },
-  ratingBig: { fontSize: 52, fontFamily: 'Inter_700Bold' },
-  ratingTotal: { fontSize: 12, fontFamily: 'Inter_400Regular' },
+  ratingBig: { fontSize: 52, fontFamily: 'GoogleSans_700Bold' },
+  ratingTotal: { fontSize: 12, fontFamily: 'GoogleSans_400Regular' },
   reviewCard: { paddingBottom: 16, borderBottomWidth: 1, gap: 10 },
   reviewHeader: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   reviewAvatar: { width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center' },
-  reviewAvatarText: { fontSize: 16, fontFamily: 'Inter_700Bold', color: '#fff' },
-  reviewUser: { fontSize: 14, fontFamily: 'Inter_600SemiBold' },
-  reviewDate: { fontSize: 12, fontFamily: 'Inter_400Regular', marginTop: 1 },
-  reviewText: { fontSize: 14, fontFamily: 'Inter_400Regular', lineHeight: 21 },
+  reviewAvatarText: { fontSize: 16, fontFamily: 'GoogleSans_700Bold', color: '#fff' },
+  reviewUser: { fontSize: 14, fontFamily: 'GoogleSans_600SemiBold' },
+  reviewDate: { fontSize: 12, fontFamily: 'GoogleSans_400Regular', marginTop: 1 },
+  reviewText: { fontSize: 14, fontFamily: 'GoogleSans_400Regular', lineHeight: 21 },
 
   /* Footer */
   footer: { flexDirection: 'row', paddingHorizontal: 16, paddingTop: 12, gap: 12 },
   cartBtn: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingVertical: 15, borderRadius: 14, borderWidth: 1.5 },
-  cartBtnText: { fontSize: 14, fontFamily: 'Inter_600SemiBold' },
+  cartBtnText: { fontSize: 14, fontFamily: 'GoogleSans_600SemiBold' },
   buyBtn: { flex: 1.3, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingVertical: 15, borderRadius: 14 },
-  buyBtnText: { fontSize: 15, fontFamily: 'Inter_700Bold' },
+  buyBtnText: { fontSize: 15, fontFamily: 'GoogleSans_700Bold' },
 });

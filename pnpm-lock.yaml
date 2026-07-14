@@ -218,6 +218,10 @@ importers:
         version: 3.1.0
 
   artifacts/mobile:
+    dependencies:
+      '@expo-google-fonts/google-sans':
+        specifier: ^0.4.0
+        version: 0.4.0
     devDependencies:
       '@babel/core':
         specifier: ^7.25.2
@@ -1120,6 +1124,9 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [linux]
+
+  '@expo-google-fonts/google-sans@0.4.0':
+    resolution: {integrity: sha512-jKlPbtTbYSW0bn9uSuAT6bVPHCmAiWfF+hdvZMYfXXGqlnDB3b7JPoGwaUxa2RB/RxCwaGM3W7zinDGY9WAsGA==}
 
   '@expo-google-fonts/inter@0.4.2':
     resolution: {integrity: sha512-syfiImMaDmq7cFi0of+waE2M4uSCyd16zgyWxdPOY7fN2VBmSLKEzkfbZgeOjJq61kSqPBNNtXjggiQiSD6gMQ==}
@@ -6248,6 +6255,8 @@ snapshots:
 
   '@esbuild/linux-x64@0.27.3':
     optional: true
+
+  '@expo-google-fonts/google-sans@0.4.0': {}
 
   '@expo-google-fonts/inter@0.4.2': {}
 

@@ -24,7 +24,7 @@ export default function SearchBarInput({ value, onChangeText, onSubmit, onClear,
         onSubmitEditing={onSubmit}
         placeholder={placeholder}
         placeholderTextColor={colors.mutedForeground}
-        style={[styles.input, { color: colors.foreground, fontFamily: 'Inter_400Regular' }]}
+        style={[styles.input, { color: colors.foreground, fontFamily: 'GoogleSans_400Regular' }]}
         returnKeyType="search"
         autoFocus={autoFocus}
         autoCorrect={false}

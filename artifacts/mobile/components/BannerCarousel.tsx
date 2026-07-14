@@ -79,8 +79,8 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     padding: 18,
   },
-  title: { fontSize: 22, fontFamily: 'Inter_700Bold', color: '#fff', marginBottom: 3, textShadowColor: 'rgba(0,0,0,0.4)', textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 4 },
-  sub: { fontSize: 13, fontFamily: 'Inter_500Medium', color: 'rgba(255,255,255,0.9)' },
+  title: { fontSize: 22, fontFamily: 'GoogleSans_700Bold', color: '#fff', marginBottom: 3, textShadowColor: 'rgba(0,0,0,0.4)', textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 4 },
+  sub: { fontSize: 13, fontFamily: 'GoogleSans_500Medium', color: 'rgba(255,255,255,0.9)' },
   dots: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 5, paddingVertical: 10 },
   dot: { height: 5, borderRadius: 3 },
 });

@@ -90,7 +90,7 @@ export default function CartScreen() {
           <Text style={[styles.sectionLabel, { color: colors.foreground }]}>Apply Coupon</Text>
           <View style={styles.couponRow}>
             <TextInput
-              style={[styles.couponInput, { backgroundColor: colors.input, color: colors.foreground, borderColor: colors.border, fontFamily: 'Inter_400Regular' }]}
+              style={[styles.couponInput, { backgroundColor: colors.input, color: colors.foreground, borderColor: colors.border, fontFamily: 'GoogleSans_400Regular' }]}
               placeholder="Enter coupon code (e.g. GRIPER10)"
               placeholderTextColor={colors.mutedForeground}
               value={couponInput}
@@ -101,7 +101,7 @@ export default function CartScreen() {
               <Text style={[styles.applyText, { color: colors.primaryForeground }]}>Apply</Text>
             </TouchableOpacity>
           </View>
-          {couponMsg ? <Text style={{ color: couponMsg.includes('applied') ? colors.success : colors.destructive, fontSize: 12, fontFamily: 'Inter_500Medium', marginTop: 6 }}>{couponMsg}</Text> : null}
+          {couponMsg ? <Text style={{ color: couponMsg.includes('applied') ? colors.success : colors.destructive, fontSize: 12, fontFamily: 'GoogleSans_500Medium', marginTop: 6 }}>{couponMsg}</Text> : null}
           {coupon ? (
             <View style={styles.activeCoupon}>
               <Text style={[styles.activeCouponText, { color: colors.success }]}>Coupon "{coupon}" applied</Text>
@@ -159,43 +159,43 @@ const styles = StyleSheet.create({
   emptyHeader: { paddingHorizontal: 20, paddingBottom: 10 },
   emptyContent: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 12 },
   emptyIcon: { width: 100, height: 100, borderRadius: 50, alignItems: 'center', justifyContent: 'center' },
-  emptyTitle: { fontSize: 20, fontFamily: 'Inter_600SemiBold' },
-  emptySubtitle: { fontSize: 14, fontFamily: 'Inter_400Regular' },
+  emptyTitle: { fontSize: 20, fontFamily: 'GoogleSans_600SemiBold' },
+  emptySubtitle: { fontSize: 14, fontFamily: 'GoogleSans_400Regular' },
   shopBtn: { paddingHorizontal: 28, paddingVertical: 14, borderRadius: 12, marginTop: 8 },
-  shopBtnText: { fontSize: 16, fontFamily: 'Inter_600SemiBold' },
+  shopBtnText: { fontSize: 16, fontFamily: 'GoogleSans_600SemiBold' },
   header: { paddingHorizontal: 20, paddingBottom: 14 },
-  screenTitle: { fontSize: 22, fontFamily: 'Inter_700Bold' },
+  screenTitle: { fontSize: 22, fontFamily: 'GoogleSans_700Bold' },
   section: { padding: 16 },
   divider: { height: 1, marginHorizontal: 0 },
   cartItem: { flexDirection: 'row', gap: 12, paddingVertical: 12 },
   itemImage: { width: 80, height: 80, borderRadius: 10 },
   itemInfo: { flex: 1, gap: 4 },
-  itemName: { fontSize: 14, fontFamily: 'Inter_500Medium', lineHeight: 20 },
-  itemSeller: { fontSize: 11, fontFamily: 'Inter_400Regular' },
+  itemName: { fontSize: 14, fontFamily: 'GoogleSans_500Medium', lineHeight: 20 },
+  itemSeller: { fontSize: 11, fontFamily: 'GoogleSans_400Regular' },
   itemPriceRow: { flexDirection: 'row', alignItems: 'center', gap: 8 },
-  itemPrice: { fontSize: 15, fontFamily: 'Inter_700Bold' },
-  itemOriginal: { fontSize: 12, fontFamily: 'Inter_400Regular', textDecorationLine: 'line-through' },
+  itemPrice: { fontSize: 15, fontFamily: 'GoogleSans_700Bold' },
+  itemOriginal: { fontSize: 12, fontFamily: 'GoogleSans_400Regular', textDecorationLine: 'line-through' },
   qtyRow: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 4 },
   qtyBtn: { width: 28, height: 28, borderRadius: 8, alignItems: 'center', justifyContent: 'center' },
-  qtyText: { fontSize: 15, fontFamily: 'Inter_600SemiBold', minWidth: 20, textAlign: 'center' },
+  qtyText: { fontSize: 15, fontFamily: 'GoogleSans_600SemiBold', minWidth: 20, textAlign: 'center' },
   removeBtn: { marginLeft: 'auto' },
-  sectionLabel: { fontSize: 16, fontFamily: 'Inter_600SemiBold', marginBottom: 12 },
+  sectionLabel: { fontSize: 16, fontFamily: 'GoogleSans_600SemiBold', marginBottom: 12 },
   couponRow: { flexDirection: 'row', gap: 8 },
   couponInput: { flex: 1, height: 44, borderRadius: 10, paddingHorizontal: 12, borderWidth: 1, fontSize: 14 },
   applyBtn: { paddingHorizontal: 18, height: 44, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
-  applyText: { fontSize: 14, fontFamily: 'Inter_600SemiBold' },
+  applyText: { fontSize: 14, fontFamily: 'GoogleSans_600SemiBold' },
   activeCoupon: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 8 },
-  activeCouponText: { fontSize: 13, fontFamily: 'Inter_500Medium' },
-  couponHint: { fontSize: 11, fontFamily: 'Inter_400Regular', marginTop: 8 },
+  activeCouponText: { fontSize: 13, fontFamily: 'GoogleSans_500Medium' },
+  couponHint: { fontSize: 11, fontFamily: 'GoogleSans_400Regular', marginTop: 8 },
   summaryRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 },
-  summaryKey: { fontSize: 14, fontFamily: 'Inter_400Regular' },
-  summaryVal: { fontSize: 14, fontFamily: 'Inter_500Medium' },
-  totalKey: { fontSize: 16, fontFamily: 'Inter_700Bold' },
-  totalVal: { fontSize: 18, fontFamily: 'Inter_700Bold' },
+  summaryKey: { fontSize: 14, fontFamily: 'GoogleSans_400Regular' },
+  summaryVal: { fontSize: 14, fontFamily: 'GoogleSans_500Medium' },
+  totalKey: { fontSize: 16, fontFamily: 'GoogleSans_700Bold' },
+  totalVal: { fontSize: 18, fontFamily: 'GoogleSans_700Bold' },
   footer: { padding: 16, gap: 10 },
   footerInfo: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  footerTotal: { fontSize: 20, fontFamily: 'Inter_700Bold' },
-  footerSaved: { fontSize: 12, fontFamily: 'Inter_500Medium' },
+  footerTotal: { fontSize: 20, fontFamily: 'GoogleSans_700Bold' },
+  footerSaved: { fontSize: 12, fontFamily: 'GoogleSans_500Medium' },
   checkoutBtn: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingVertical: 16, borderRadius: 14 },
-  checkoutText: { fontSize: 16, fontFamily: 'Inter_600SemiBold' },
+  checkoutText: { fontSize: 16, fontFamily: 'GoogleSans_600SemiBold' },
 });

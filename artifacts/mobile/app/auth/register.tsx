@@ -74,7 +74,7 @@ export default function RegisterScreen() {
               <View style={[styles.inputWrap, { backgroundColor: colors.input, borderColor: colors.border }]}>
                 <Ionicons name={field.icon as any} size={18} color={colors.mutedForeground} />
                 <TextInput
-                  style={[styles.input, { color: colors.foreground, fontFamily: 'Inter_400Regular' }]}
+                  style={[styles.input, { color: colors.foreground, fontFamily: 'GoogleSans_400Regular' }]}
                   placeholder={field.placeholder}
                   placeholderTextColor={colors.mutedForeground}
                   value={field.value}
@@ -92,7 +92,7 @@ export default function RegisterScreen() {
             <View style={[styles.inputWrap, { backgroundColor: colors.input, borderColor: colors.border }]}>
               <Ionicons name="lock-closed-outline" size={18} color={colors.mutedForeground} />
               <TextInput
-                style={[styles.input, { color: colors.foreground, fontFamily: 'Inter_400Regular' }]}
+                style={[styles.input, { color: colors.foreground, fontFamily: 'GoogleSans_400Regular' }]}
                 placeholder="Min. 6 characters"
                 placeholderTextColor={colors.mutedForeground}
                 value={password}
@@ -140,21 +140,21 @@ const styles = StyleSheet.create({
   inner: { flex: 1, paddingHorizontal: 28, paddingTop: 20, paddingBottom: 40, gap: 8 },
   brand: { alignItems: 'center', gap: 8, marginBottom: 8 },
   logo: { width: 56, height: 56, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
-  logoText: { fontSize: 26, fontFamily: 'Inter_700Bold', color: '#fff' },
-  brandName: { fontSize: 18, fontFamily: 'Inter_700Bold', letterSpacing: 3 },
-  title: { fontSize: 26, fontFamily: 'Inter_700Bold' },
-  subtitle: { fontSize: 15, fontFamily: 'Inter_400Regular', marginBottom: 4 },
+  logoText: { fontSize: 26, fontFamily: 'GoogleSans_700Bold', color: '#fff' },
+  brandName: { fontSize: 18, fontFamily: 'GoogleSans_700Bold', letterSpacing: 3 },
+  title: { fontSize: 26, fontFamily: 'GoogleSans_700Bold' },
+  subtitle: { fontSize: 15, fontFamily: 'GoogleSans_400Regular', marginBottom: 4 },
   form: { gap: 14, marginTop: 8 },
   field: { gap: 6 },
-  label: { fontSize: 14, fontFamily: 'Inter_500Medium' },
+  label: { fontSize: 14, fontFamily: 'GoogleSans_500Medium' },
   inputWrap: { flexDirection: 'row', alignItems: 'center', gap: 10, borderRadius: 12, paddingHorizontal: 14, height: 50, borderWidth: 1 },
   input: { flex: 1, fontSize: 15, height: '100%' },
   registerBtn: { paddingVertical: 16, borderRadius: 14, alignItems: 'center', marginTop: 4 },
-  registerBtnText: { fontSize: 16, fontFamily: 'Inter_600SemiBold' },
+  registerBtnText: { fontSize: 16, fontFamily: 'GoogleSans_600SemiBold' },
   orRow: { flexDirection: 'row', alignItems: 'center', gap: 8, marginVertical: 4 },
   orLine: { flex: 1, height: 1 },
-  orText: { fontSize: 12, fontFamily: 'Inter_400Regular' },
+  orText: { fontSize: 12, fontFamily: 'GoogleSans_400Regular' },
   loginBtn: { paddingVertical: 14, borderRadius: 14, alignItems: 'center', borderWidth: 1.5 },
-  loginBtnText: { fontSize: 15, fontFamily: 'Inter_600SemiBold' },
-  terms: { fontSize: 11, fontFamily: 'Inter_400Regular', textAlign: 'center', lineHeight: 16 },
+  loginBtnText: { fontSize: 15, fontFamily: 'GoogleSans_600SemiBold' },
+  terms: { fontSize: 11, fontFamily: 'GoogleSans_400Regular', textAlign: 'center', lineHeight: 16 },
 });

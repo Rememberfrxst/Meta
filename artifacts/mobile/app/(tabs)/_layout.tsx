@@ -72,7 +72,7 @@ function ClassicTabLayout() {
           ) : (
             <View style={[StyleSheet.absoluteFill, { backgroundColor: colors.card }]} />
           ),
-        tabBarLabelStyle: { fontFamily: 'Inter_500Medium', fontSize: 11 },
+        tabBarLabelStyle: { fontFamily: 'GoogleSans_500Medium', fontSize: 11 },
       }}
     >
       {/* HOME — custom FA SVG icons (filled when active, outline when inactive) */}
@@ -104,7 +104,7 @@ function ClassicTabLayout() {
           tabBarBadge: itemCount > 0 ? itemCount : undefined,
           tabBarBadgeStyle: {
             backgroundColor: colors.primary,
-            fontFamily: 'Inter_700Bold',
+            fontFamily: 'GoogleSans_700Bold',
             fontSize: 10,
           },
           tabBarIcon: ({ color, focused, size }) => (

@@ -117,7 +117,7 @@ export default function OrderDetailScreen() {
                     <Ionicons name={step.icon as any} size={18} color={done ? colors.success : colors.mutedForeground} />
                   </View>
                   <View style={{ flex: 1 }}>
-                    <Text style={[styles.timelineLabel, { color: done ? colors.foreground : colors.mutedForeground, fontFamily: active ? 'Inter_700Bold' : 'Inter_500Medium' }]}>
+                    <Text style={[styles.timelineLabel, { color: done ? colors.foreground : colors.mutedForeground, fontFamily: active ? 'GoogleSans_700Bold' : 'GoogleSans_500Medium' }]}>
                       {step.label}
                     </Text>
                     {done && (
@@ -174,16 +174,16 @@ export default function OrderDetailScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1 },
   notFound: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 16 },
-  notFoundText: { fontSize: 18, fontFamily: 'Inter_500Medium' },
-  link: { fontSize: 15, fontFamily: 'Inter_600SemiBold' },
+  notFoundText: { fontSize: 18, fontFamily: 'GoogleSans_500Medium' },
+  link: { fontSize: 15, fontFamily: 'GoogleSans_600SemiBold' },
   statusBanner: { flexDirection: 'row', alignItems: 'center', gap: 14, padding: 20 },
-  statusTitle: { fontSize: 17, fontFamily: 'Inter_700Bold' },
-  statusSub: { fontSize: 13, fontFamily: 'Inter_400Regular', marginTop: 2 },
+  statusTitle: { fontSize: 17, fontFamily: 'GoogleSans_700Bold' },
+  statusSub: { fontSize: 13, fontFamily: 'GoogleSans_400Regular', marginTop: 2 },
   section: { padding: 16, gap: 10 },
-  sectionTitle: { fontSize: 16, fontFamily: 'Inter_700Bold', marginBottom: 6 },
+  sectionTitle: { fontSize: 16, fontFamily: 'GoogleSans_700Bold', marginBottom: 6 },
   infoRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  infoLabel: { fontSize: 13, fontFamily: 'Inter_400Regular' },
-  infoVal: { fontSize: 13, fontFamily: 'Inter_600SemiBold' },
+  infoLabel: { fontSize: 13, fontFamily: 'GoogleSans_400Regular' },
+  infoVal: { fontSize: 13, fontFamily: 'GoogleSans_600SemiBold' },
   timelineRow: { flexDirection: 'row', gap: 12, minHeight: 60 },
   timelineLeft: { width: 24, alignItems: 'center' },
   timelineDot: { width: 24, height: 24, borderRadius: 12, borderWidth: 2, alignItems: 'center', justifyContent: 'center' },
@@ -192,17 +192,17 @@ const styles = StyleSheet.create({
   timelineContent: { flex: 1, flexDirection: 'row', alignItems: 'center', gap: 12, paddingBottom: 16 },
   timelineIconWrap: { width: 36, height: 36, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
   timelineLabel: { fontSize: 14 },
-  timelineDate: { fontSize: 12, fontFamily: 'Inter_400Regular', marginTop: 2 },
+  timelineDate: { fontSize: 12, fontFamily: 'GoogleSans_400Regular', marginTop: 2 },
   itemRow: { flexDirection: 'row', gap: 12, paddingVertical: 12, borderBottomWidth: 1 },
   itemImg: { width: 60, height: 60, borderRadius: 10 },
   itemInfo: { flex: 1, gap: 4 },
-  itemName: { fontSize: 14, fontFamily: 'Inter_500Medium', lineHeight: 20 },
-  itemQty: { fontSize: 12, fontFamily: 'Inter_400Regular' },
-  itemPrice: { fontSize: 14, fontFamily: 'Inter_700Bold' },
-  addrName: { fontSize: 15, fontFamily: 'Inter_600SemiBold' },
-  addrLine: { fontSize: 13, fontFamily: 'Inter_400Regular' },
-  addrPhone: { fontSize: 13, fontFamily: 'Inter_500Medium', marginTop: 4 },
+  itemName: { fontSize: 14, fontFamily: 'GoogleSans_500Medium', lineHeight: 20 },
+  itemQty: { fontSize: 12, fontFamily: 'GoogleSans_400Regular' },
+  itemPrice: { fontSize: 14, fontFamily: 'GoogleSans_700Bold' },
+  addrName: { fontSize: 15, fontFamily: 'GoogleSans_600SemiBold' },
+  addrLine: { fontSize: 13, fontFamily: 'GoogleSans_400Regular' },
+  addrPhone: { fontSize: 13, fontFamily: 'GoogleSans_500Medium', marginTop: 4 },
   summaryRow: { flexDirection: 'row', justifyContent: 'space-between' },
-  summaryKey: { fontSize: 15, fontFamily: 'Inter_400Regular' },
-  summaryVal: { fontSize: 16, fontFamily: 'Inter_700Bold' },
+  summaryKey: { fontSize: 15, fontFamily: 'GoogleSans_400Regular' },
+  summaryVal: { fontSize: 16, fontFamily: 'GoogleSans_700Bold' },
 });

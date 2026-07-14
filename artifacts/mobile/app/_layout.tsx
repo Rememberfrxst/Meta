@@ -5,12 +5,12 @@ import { KeyboardProvider } from 'react-native-keyboard-controller';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import {
-  Inter_400Regular,
-  Inter_500Medium,
-  Inter_600SemiBold,
-  Inter_700Bold,
-  useFonts,
-} from '@expo-google-fonts/inter';
+  GoogleSans_400Regular,
+  GoogleSans_500Medium,
+  GoogleSans_600SemiBold,
+  GoogleSans_700Bold,
+} from '@expo-google-fonts/google-sans';
+import { Inter_700Bold, useFonts } from '@expo-google-fonts/inter';
 import { Ionicons } from '@expo/vector-icons';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -32,7 +32,7 @@ function RootLayoutNav() {
       screenOptions={{
         headerStyle: { backgroundColor: colors.card },
         headerTintColor: colors.primary,
-        headerTitleStyle: { fontFamily: 'Inter_600SemiBold', fontSize: 17, color: colors.foreground },
+        headerTitleStyle: { fontFamily: 'GoogleSans_600SemiBold', fontSize: 17, color: colors.foreground },
         headerShadowVisible: false,
         headerBackTitle: '',
       }}
@@ -54,12 +54,14 @@ function RootLayoutNav() {
 
 export default function RootLayout() {
   const [fontsLoaded, fontError] = useFonts({
-    Inter_400Regular,
-    Inter_500Medium,
-    Inter_600SemiBold,
+    // Google Sans — used everywhere in the app
+    GoogleSans_400Regular,
+    GoogleSans_500Medium,
+    GoogleSans_600SemiBold,
+    GoogleSans_700Bold,
+    // Inter Bold — kept only for the GRIPER logo wordmark on the home screen
     Inter_700Bold,
-    // Explicitly preload Ionicons font so it never falls back to Japanese/Chinese
-    // glyphs on physical Android devices.
+    // Ionicons — preloaded so it never falls back to Japanese/Chinese glyphs on Android
     ...Ionicons.font,
   });
 

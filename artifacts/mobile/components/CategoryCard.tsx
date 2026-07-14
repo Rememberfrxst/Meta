@@ -27,5 +27,5 @@ export default function CategoryCard({ category, onPress }: { category: Category
 const styles = StyleSheet.create({
   wrap: { alignItems: 'center', width: 72, gap: 6 },
   icon: { width: 54, height: 54, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
-  label: { fontSize: 11, fontFamily: 'Inter_500Medium', textAlign: 'center' },
+  label: { fontSize: 11, fontFamily: 'GoogleSans_500Medium', textAlign: 'center' },
 });
