@@ -1,13 +1,24 @@
 import React from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
 import { useColors } from '@/hooks/useColors';
-import { Ionicons } from '@expo/vector-icons';
 import { BlurView } from 'expo-blur';
 import { isLiquidGlassAvailable } from 'expo-glass-effect';
 import { Tabs } from 'expo-router';
 import { Icon, Label, NativeTabs } from 'expo-router/unstable-native-tabs';
 import { useCart } from '@/context/CartContext';
 import { useTheme } from '@/context/ThemeContext';
+import {
+  HomeIconFilled,
+  HomeIconOutline,
+  SearchIconFilled,
+  SearchIconOutline,
+  CartIconFilled,
+  CartIconOutline,
+  OrdersIconFilled,
+  OrdersIconOutline,
+  ProfileIconFilled,
+  ProfileIconOutline,
+} from '@/components/TabIcons';
 
 // NativeTabs + SF Symbols are iOS-only — never render on Android/web
 // to avoid Japanese-character fallbacks from SF Symbol rendering.
@@ -74,24 +85,29 @@ function ClassicTabLayout() {
         tabBarLabelStyle: { fontFamily: 'Inter_500Medium', fontSize: 11 },
       }}
     >
+      {/* HOME — custom FA SVG icons (filled when active, outline when inactive) */}
       <Tabs.Screen
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home-outline" size={size ?? 23} color={color} />
-          ),
+          tabBarIcon: ({ color, focused }) =>
+            focused
+              ? <HomeIconFilled color={color} size={24} />
+              : <HomeIconOutline color={color} size={24} />,
         }}
       />
+
       <Tabs.Screen
         name="search"
         options={{
           title: 'Search',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="search-outline" size={size ?? 23} color={color} />
-          ),
+          tabBarIcon: ({ color, focused }) =>
+            focused
+              ? <SearchIconFilled color={color} size={24} />
+              : <SearchIconOutline color={color} size={24} />,
         }}
       />
+
       <Tabs.Screen
         name="cart"
         options={{
@@ -102,27 +118,32 @@ function ClassicTabLayout() {
             fontFamily: 'Inter_700Bold',
             fontSize: 10,
           },
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="bag-outline" size={size ?? 23} color={color} />
-          ),
+          tabBarIcon: ({ color, focused }) =>
+            focused
+              ? <CartIconFilled color={color} size={24} />
+              : <CartIconOutline color={color} size={24} />,
         }}
       />
+
       <Tabs.Screen
         name="orders"
         options={{
           title: 'Orders',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="receipt-outline" size={size ?? 23} color={color} />
-          ),
+          tabBarIcon: ({ color, focused }) =>
+            focused
+              ? <OrdersIconFilled color={color} size={24} />
+              : <OrdersIconOutline color={color} size={24} />,
         }}
       />
+
       <Tabs.Screen
         name="profile"
         options={{
           title: 'Me',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person-circle-outline" size={size ?? 23} color={color} />
-          ),
+          tabBarIcon: ({ color, focused }) =>
+            focused
+              ? <ProfileIconFilled color={color} size={24} />
+              : <ProfileIconOutline color={color} size={24} />,
         }}
       />
     </Tabs>
