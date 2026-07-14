@@ -96,11 +96,6 @@ const styles = StyleSheet.create({
   card: {
     overflow: 'hidden',
     borderRadius: 16,
-    elevation: 3,
-    shadowColor: '#000',
-    shadowOpacity: 0.08,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 8,
   },
   image: {
     width: '100%',
